@@ -18,6 +18,7 @@
         <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
         <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
         <link href="../assets/_mkdocstrings.css" rel="stylesheet">
+        <link href="../_static/logo.css" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
         <script>hljs.highlightAll();</script> 
     </head>
@@ -151,27 +152,27 @@ separaten Seiten für HISinOne und LSF.</p>
 </thead>
 <tbody>
 <tr>
-<td><code>scrape_all_sem</code></td>
+<td><code>his_scrape_all_semesters</code></td>
 <td>HISinOne</td>
 <td>kompletter HISinOne-Lauf über ein oder mehrere Semester</td>
 </tr>
 <tr>
-<td><code>fetch_base_data</code></td>
+<td><code>his_fetch_base_data</code></td>
 <td>HISinOne</td>
 <td>lädt nur die Kursübersicht eines Semesters</td>
 </tr>
 <tr>
-<td><code>scrape_base_data_lsf</code></td>
+<td><code>lsf_scrape_base_data</code></td>
 <td>LSF</td>
 <td>erstellt die Veranstaltungsliste eines oder mehrerer Semester</td>
 </tr>
 <tr>
-<td><code>scrape_lsf_veranstaltungen</code></td>
+<td><code>lsf_scrape_veranstaltungsdetails</code></td>
 <td>LSF</td>
 <td>ergänzt Detaildaten zu vorhandenen Veranstaltungs-URLs</td>
 </tr>
 <tr>
-<td><code>scrape_lsf_all_semesters</code></td>
+<td><code>lsf_scrape_all_semesters</code></td>
 <td>LSF</td>
 <td>führt den kompletten LSF-Workflow pro Semester aus</td>
 </tr>
@@ -181,39 +182,39 @@ separaten Seiten für HISinOne und LSF.</p>
 <h3 id="1-orchestrierung">1. Orchestrierung</h3>
 <p>Diese Funktionen steuern ganze Abläufe statt nur einzelner Schritte:</p>
 <ul>
-<li><code>scrape_all_sem</code></li>
-<li><code>scrape_base_data_lsf</code></li>
-<li><code>scrape_lsf_veranstaltungen</code></li>
-<li><code>scrape_lsf_all_semesters</code></li>
+<li><code>his_scrape_all_semesters</code></li>
+<li><code>lsf_scrape_base_data</code></li>
+<li><code>lsf_scrape_veranstaltungsdetails</code></li>
+<li><code>lsf_scrape_all_semesters</code></li>
 </ul>
 <h3 id="2-navigation-und-suche">2. Navigation und Suche</h3>
 <p>Diese Funktionen bewegen sich durch Oberflächen, setzen Semester oder öffnen
 Trefferlisten:</p>
 <ul>
-<li><code>start_his_session</code></li>
+<li><code>his_start_session</code></li>
 <li><code>his_select_semester_base_data</code></li>
 <li><code>his_select_semester</code></li>
-<li><code>select_semester</code></li>
+<li><code>lsf_select_semester</code></li>
 </ul>
 <h3 id="3-extraktion">3. Extraktion</h3>
 <p>Diese Funktionen lesen konkrete Inhalte aus Listen- oder Detailseiten:</p>
 <ul>
 <li><code>his_search_and_get_data</code></li>
-<li><code>scrape_termine</code></li>
-<li><code>scrape_inhalte_playwright</code></li>
-<li><code>scrape_module_studiengaenge_playwright</code></li>
-<li>die <code>extract_*_lsf</code>-Funktionen für Titel, Grunddaten, Termine, Personen,
+<li><code>his_scrape_termine</code></li>
+<li><code>his_scrape_inhalte_playwright</code></li>
+<li><code>his_scrape_module_studiengaenge_playwright</code></li>
+<li>die <code>lsf_extract_*</code>-Funktionen für Titel, Grunddaten, Termine, Personen,
   Module, Studiengänge und weitere Angaben</li>
 </ul>
 <h3 id="4-hilfsfunktionen">4. Hilfsfunktionen</h3>
 <p>Diese Funktionen kümmern sich um Normalisierung, Vergleichbarkeit oder
 Zwischenspeicherung:</p>
 <ul>
-<li><code>sanitize_semester_name</code></li>
-<li><code>clean_titles</code></li>
+<li><code>his_sanitize_semester_name</code></li>
+<li><code>his_normalize_titles</code></li>
 <li><code>normalize_his_text</code></li>
-<li><code>clean_text</code></li>
-<li><code>normalize_url</code></li>
+<li><code>lsf_clean_text</code></li>
+<li><code>lsf_normalize_url</code></li>
 </ul>
 <h2 id="wie-die-detailseiten-aufgebaut-sind">Wie die Detailseiten aufgebaut sind</h2>
 <p>Auf den Referenzseiten wird zwischen drei Rollen unterschieden:</p>
@@ -243,6 +244,7 @@ Zwischenspeicherung:</p>
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
         <script src="../js/base.js"></script>
+        <script src="../_static/logo.js"></script>
         <script src="../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">

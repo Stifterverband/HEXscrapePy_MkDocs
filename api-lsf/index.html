@@ -18,6 +18,7 @@
         <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
         <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
         <link href="../assets/_mkdocstrings.css" rel="stylesheet">
+        <link href="../_static/logo.css" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
         <script>hljs.highlightAll();</script> 
     </head>
@@ -155,17 +156,17 @@ dann die Detailseiten laden und in einzelne Inhaltsblöcke zerlegen.</p>
 </thead>
 <tbody>
 <tr>
-<td><code>scrape_base_data_lsf</code></td>
+<td><code>lsf_scrape_base_data</code></td>
 <td>Basisdaten</td>
 <td>erstellt eine Veranstaltungsliste für ein oder mehrere Semester und schreibt sie als Basisdatei</td>
 </tr>
 <tr>
-<td><code>scrape_lsf_veranstaltungen</code></td>
+<td><code>lsf_scrape_veranstaltungsdetails</code></td>
 <td>Detaildaten</td>
 <td>lädt für vorhandene <code>URL_Event</code>-Links die Detailseiten und ergänzt die inhaltlichen Zusatzfelder</td>
 </tr>
 <tr>
-<td><code>scrape_lsf_all_semesters</code></td>
+<td><code>lsf_scrape_all_semesters</code></td>
 <td>Wrapper</td>
 <td>kombiniert Basislauf und Detail-Scraping zu einem kompletten LSF-Workflow pro Semester</td>
 </tr>
@@ -182,72 +183,72 @@ dann die Detailseiten laden und in einzelne Inhaltsblöcke zerlegen.</p>
 </thead>
 <tbody>
 <tr>
-<td><code>select_semester</code></td>
+<td><code>lsf_select_semester</code></td>
 <td>Navigation</td>
 <td>wechselt im LSF zum gewünschten Semester und öffnet das Vorlesungsverzeichnis</td>
 </tr>
 <tr>
-<td><code>extract_veranstaltungstitel_lsf</code></td>
+<td><code>lsf_extract_veranstaltungstitel</code></td>
 <td>Extraktion</td>
 <td>liest den sichtbaren Veranstaltungstitel aus der Detailseite</td>
 </tr>
 <tr>
-<td><code>extract_grunddaten_lsf</code></td>
+<td><code>lsf_extract_grunddaten</code></td>
 <td>Extraktion</td>
 <td>liest den Block <code>Grunddaten zur Veranstaltung</code> als strukturierte Felder aus</td>
 </tr>
 <tr>
-<td><code>extract_termine_lsf</code></td>
+<td><code>lsf_extract_termine</code></td>
 <td>Extraktion</td>
 <td>liest alle Terminzeilen einer Veranstaltung in Tabellenform aus</td>
 </tr>
 <tr>
-<td><code>extract_dozenten_lsf</code></td>
+<td><code>lsf_extract_dozenten</code></td>
 <td>Extraktion</td>
 <td>extrahiert die Tabelle der durchführenden Dozentinnen und Dozenten</td>
 </tr>
 <tr>
-<td><code>extract_zugeordnete_personen_lsf</code></td>
+<td><code>lsf_extract_zugeordnete_personen</code></td>
 <td>Extraktion</td>
 <td>extrahiert weitere zugeordnete oder verantwortliche Personen als verschachtelte Tabelle</td>
 </tr>
 <tr>
-<td><code>extract_studiengaenge_lsf</code></td>
+<td><code>lsf_extract_studiengaenge</code></td>
 <td>Extraktion</td>
 <td>liest den Studiengangsblock als verschachtelte Tabelle aus</td>
 </tr>
 <tr>
-<td><code>extract_module_lsf</code></td>
+<td><code>lsf_extract_module</code></td>
 <td>Extraktion</td>
 <td>liest den Modulblock als verschachtelte Tabelle aus</td>
 </tr>
 <tr>
-<td><code>extract_einrichtung_lsf</code></td>
+<td><code>lsf_extract_einrichtung</code></td>
 <td>Extraktion</td>
 <td>liest organisatorische Zuordnungen oder Einrichtungen aus</td>
 </tr>
 <tr>
-<td><code>extract_weitere_angaben_lsf</code></td>
+<td><code>lsf_extract_weitere_angaben</code></td>
 <td>Extraktion</td>
 <td>liest den Block <code>Weitere Angaben zur Veranstaltung</code> generisch als Felder aus</td>
 </tr>
 <tr>
-<td><code>extract_lerninhalt_lsf</code></td>
+<td><code>lsf_extract_lerninhalt</code></td>
 <td>Extraktion</td>
 <td>zieht das Feld <code>Lerninhalte</code> aus den weiteren Angaben heraus</td>
 </tr>
 <tr>
-<td><code>extract_kommentar_lsf</code></td>
+<td><code>lsf_extract_kommentar</code></td>
 <td>Extraktion</td>
 <td>zieht das Feld <code>Kommentar</code> aus den weiteren Angaben heraus</td>
 </tr>
 <tr>
-<td><code>fetch_lsf_course_html</code></td>
+<td><code>lsf_fetch_course_html</code></td>
 <td>Abruf</td>
 <td>lädt das rohe HTML einer LSF-Detailseite per HTTP</td>
 </tr>
 <tr>
-<td><code>fetch_lsf_course_html_expanded</code></td>
+<td><code>lsf_fetch_course_html_expanded</code></td>
 <td>Abruf</td>
 <td>lädt die Detailseite mit vorher aufgeklappten Toggle-Bereichen über Playwright</td>
 </tr>
@@ -264,12 +265,12 @@ dann die Detailseiten laden und in einzelne Inhaltsblöcke zerlegen.</p>
 </thead>
 <tbody>
 <tr>
-<td><code>clean_text</code></td>
+<td><code>lsf_clean_text</code></td>
 <td>Helper</td>
 <td>bereinigt Freitext und ersetzt leere Werte durch einen einheitlichen Platzhalter</td>
 </tr>
 <tr>
-<td><code>normalize_url</code></td>
+<td><code>lsf_normalize_url</code></td>
 <td>Helper</td>
 <td>reduziert LSF-Navigations-URLs auf stabile Vergleichswerte für Duplikaterkennung</td>
 </tr>
@@ -323,10 +324,10 @@ dann die Detailseiten laden und in einzelne Inhaltsblöcke zerlegen.</p>
 <h2 id="typischer-ablauf">Typischer Ablauf</h2>
 <p>Ein vollständiger LSF-Lauf sieht meist so aus:</p>
 <ol>
-<li>Mit <code>scrape_lsf_all_semesters()</code> oder manuell mit <code>scrape_base_data_lsf()</code>
+<li>Mit <code>lsf_scrape_all_semesters()</code> oder manuell mit <code>lsf_scrape_base_data()</code>
    zunächst die Veranstaltungsliste eines Semesters aufbauen.</li>
 <li>Auf Basis der erzeugten <code>URL_Event</code>-Spalte die Detailseiten mit
-   <code>scrape_lsf_veranstaltungen()</code> abrufen.</li>
+   <code>lsf_scrape_veranstaltungsdetails()</code> abrufen.</li>
 <li>Innerhalb des Detail-Scrapings lesen die einzelnen <code>extract_*</code>-Funktionen
    die jeweiligen Inhaltsblöcke aus dem HTML.</li>
 <li>Die Ergebnisse werden anschließend zu einem gemeinsamen DataFrame pro
@@ -371,15 +372,15 @@ dann die Detailseiten laden und in einzelne Inhaltsblöcke zerlegen.</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="hexscrapepy.lsf_scraper.clean_text" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">clean_text</span><span class="p">(</span><span class="n">text</span><span class="p">)</span></code>
+<h3 id="hexscrapepy.lsf_scraper.lsf_clean_text" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">lsf_clean_text</span><span class="p">(</span><span class="n">text</span><span class="p">)</span></code>
 
 </h3>
 
 
     <div class="doc doc-contents ">
 
-        <p>Normalize free text for export and parser logic.</p>
+        <p>Bereinige Freitext für Export und Parsing.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -401,7 +402,7 @@ dann die Detailseiten laden und in einzelne Inhaltsblöcke zerlegen.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Raw text or <code>None</code>.</p>
+                <p>Roher Text oder <code>None</code>.</p>
               </div>
             </td>
             <td>
@@ -426,7 +427,7 @@ dann die Detailseiten laden und in einzelne Inhaltsblöcke zerlegen.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Cleaned string with normalized whitespace, or <code>"N.N."</code> for empty input.</p>
+                <p>Bereinigter String mit normalisiertem Whitespace oder <code>"N.N."</code> bei leerem Input.</p>
               </div>
             </td>
           </tr>
@@ -441,8 +442,8 @@ dann die Detailseiten laden und in einzelne Inhaltsblöcke zerlegen.</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="hexscrapepy.lsf_scraper.extract_dozenten_lsf" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">extract_dozenten_lsf</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span></code>
+<h3 id="hexscrapepy.lsf_scraper.lsf_extract_dozenten" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">lsf_extract_dozenten</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span></code>
 
 </h3>
 
@@ -451,7 +452,7 @@ dann die Detailseiten laden und in einzelne Inhaltsblöcke zerlegen.</p>
 
         <p>Extrahiert echte Dozenten-Tabellen aus einer LSF-Seite.</p>
 <p>Wichtig:
-Diese Funktion ist bewusst enger gefasst als <code>extract_zugeordnete_personen_lsf</code>.
+Diese Funktion ist bewusst enger gefasst als <code>lsf_extract_zugeordnete_personen</code>.
 Sie liest nur Tabellen, die tatsächlich als <code>Durchführende Dozenten</code>
 ausgezeichnet sind. Allgemeine Personenblöcke wie <code>Zugeordnete Person</code>
 werden hier nicht mehr mit ausgewertet.</p>
@@ -528,8 +529,8 @@ werden hier nicht mehr mit ausgewertet.</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="hexscrapepy.lsf_scraper.extract_einrichtung_lsf" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">extract_einrichtung_lsf</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span></code>
+<h3 id="hexscrapepy.lsf_scraper.lsf_extract_einrichtung" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">lsf_extract_einrichtung</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span></code>
 
 </h3>
 
@@ -604,15 +605,15 @@ DataFrame übersetzt.</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="hexscrapepy.lsf_scraper.extract_grunddaten_lsf" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">extract_grunddaten_lsf</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span></code>
+<h3 id="hexscrapepy.lsf_scraper.lsf_extract_grunddaten" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">lsf_extract_grunddaten</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span></code>
 
 </h3>
 
 
     <div class="doc doc-contents ">
 
-        <p>Extract structured base metadata from the LSF detail page.</p>
+        <p>Lese den Block <code>Grunddaten zur Veranstaltung</code> strukturiert aus.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -635,7 +636,7 @@ DataFrame übersetzt.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Parsed HTML tree of the detail page.</p>
+                <p>Geparster HTML-Baum der Detailseite.</p>
               </div>
             </td>
             <td>
@@ -661,7 +662,7 @@ DataFrame übersetzt.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Single-row DataFrame of the detected base metadata or an empty</p>
+                <p>Einzeiliges DataFrame mit den erkannten Grunddaten oder ein leeres</p>
               </div>
             </td>
           </tr>
@@ -671,7 +672,7 @@ DataFrame übersetzt.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>DataFrame if the section is missing.</p>
+                <p>DataFrame, wenn der Block fehlt.</p>
               </div>
             </td>
           </tr>
@@ -686,8 +687,8 @@ DataFrame übersetzt.</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="hexscrapepy.lsf_scraper.extract_kommentar_lsf" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">extract_kommentar_lsf</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span></code>
+<h3 id="hexscrapepy.lsf_scraper.lsf_extract_kommentar" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">lsf_extract_kommentar</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span></code>
 
 </h3>
 
@@ -695,7 +696,7 @@ DataFrame übersetzt.</p>
     <div class="doc doc-contents ">
 
         <p>Extrahiert den Kommentar aus dem Block <code>Weitere Angaben</code>.</p>
-<p>Zuerst wird die generische Extraktion über <code>extract_weitere_angaben_lsf</code>
+<p>Zuerst wird die generische Extraktion über <code>lsf_extract_weitere_angaben</code>
 versucht. Falls eine Uni stattdessen nur eine einzige kommentierende Zeile
 ohne saubere Überschrift liefert, gibt es darunter noch einen kleinen
 Fallback für diesen Sonderfall.</p>
@@ -762,8 +763,8 @@ Fallback für diesen Sonderfall.</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="hexscrapepy.lsf_scraper.extract_lerninhalt_lsf" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">extract_lerninhalt_lsf</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span></code>
+<h3 id="hexscrapepy.lsf_scraper.lsf_extract_lerninhalt" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">lsf_extract_lerninhalt</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span></code>
 
 </h3>
 
@@ -834,8 +835,8 @@ Fallback für diesen Sonderfall.</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="hexscrapepy.lsf_scraper.extract_module_lsf" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">extract_module_lsf</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span></code>
+<h3 id="hexscrapepy.lsf_scraper.lsf_extract_module" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">lsf_extract_module</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span></code>
 
 </h3>
 
@@ -885,8 +886,8 @@ Fallback für diesen Sonderfall.</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="hexscrapepy.lsf_scraper.extract_studiengaenge_lsf" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">extract_studiengaenge_lsf</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span></code>
+<h3 id="hexscrapepy.lsf_scraper.lsf_extract_studiengaenge" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">lsf_extract_studiengaenge</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span></code>
 
 </h3>
 
@@ -977,15 +978,15 @@ Fallback für diesen Sonderfall.</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="hexscrapepy.lsf_scraper.extract_termine_lsf" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">extract_termine_lsf</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span></code>
+<h3 id="hexscrapepy.lsf_scraper.lsf_extract_termine" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">lsf_extract_termine</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span></code>
 
 </h3>
 
 
     <div class="doc doc-contents ">
 
-        <p>Extract all schedule rows from an LSF detail page.</p>
+        <p>Lese alle Terminzeilen einer LSF-Detailseite aus.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -1008,7 +1009,7 @@ Fallback für diesen Sonderfall.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Parsed HTML tree of the detail page.</p>
+                <p>Geparster HTML-Baum der Detailseite.</p>
               </div>
             </td>
             <td>
@@ -1034,7 +1035,7 @@ Fallback für diesen Sonderfall.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>DataFrame with one row per schedule entry.</p>
+                <p>DataFrame mit einer Zeile pro Termin.</p>
               </div>
             </td>
           </tr>
@@ -1049,15 +1050,15 @@ Fallback für diesen Sonderfall.</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="hexscrapepy.lsf_scraper.extract_veranstaltungstitel_lsf" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">extract_veranstaltungstitel_lsf</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span></code>
+<h3 id="hexscrapepy.lsf_scraper.lsf_extract_veranstaltungstitel" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">lsf_extract_veranstaltungstitel</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span></code>
 
 </h3>
 
 
     <div class="doc doc-contents ">
 
-        <p>Extract the visible course title from an LSF detail page.</p>
+        <p>Lese den sichtbaren Veranstaltungstitel aus einer LSF-Detailseite.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -1080,7 +1081,7 @@ Fallback für diesen Sonderfall.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Parsed HTML tree of the detail page.</p>
+                <p>Geparster HTML-Baum der Detailseite.</p>
               </div>
             </td>
             <td>
@@ -1106,7 +1107,7 @@ Fallback für diesen Sonderfall.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Single-row DataFrame with column <code>veranstaltungstitel</code> or an empty</p>
+                <p>Einzeiliges DataFrame mit der Spalte <code>veranstaltungstitel</code> oder ein</p>
               </div>
             </td>
           </tr>
@@ -1116,7 +1117,7 @@ Fallback für diesen Sonderfall.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>DataFrame if no title could be detected.</p>
+                <p>leeres DataFrame, wenn kein Titel erkannt wurde.</p>
               </div>
             </td>
           </tr>
@@ -1131,8 +1132,8 @@ Fallback für diesen Sonderfall.</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="hexscrapepy.lsf_scraper.extract_weitere_angaben_lsf" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">extract_weitere_angaben_lsf</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span></code>
+<h3 id="hexscrapepy.lsf_scraper.lsf_extract_weitere_angaben" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">lsf_extract_weitere_angaben</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span></code>
 
 </h3>
 
@@ -1154,8 +1155,8 @@ vorhandenen Feldern zurück.</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="hexscrapepy.lsf_scraper.extract_zugeordnete_personen_lsf" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">extract_zugeordnete_personen_lsf</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span></code>
+<h3 id="hexscrapepy.lsf_scraper.lsf_extract_zugeordnete_personen" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">lsf_extract_zugeordnete_personen</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span></code>
 
 </h3>
 
@@ -1179,17 +1180,15 @@ möglichst erhalten bleibt.</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="hexscrapepy.lsf_scraper.fetch_lsf_course_html" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">fetch_lsf_course_html</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span></code>
+<h3 id="hexscrapepy.lsf_scraper.lsf_fetch_course_html" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">lsf_fetch_course_html</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span></code>
 
 </h3>
 
 
     <div class="doc doc-contents ">
 
-        <p>Lädt das rohe HTML einer LSF-Veranstaltungsseite.</p>
-<p>Das HTML wird als String zurückgegeben, damit es später direkt mit
-BeautifulSoup, <code>pandas.read_html</code> oder in R weiterverarbeitet werden kann.</p>
+        <p>Lade das rohe HTML einer LSF-Veranstaltungsseite per HTTP.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -1269,19 +1268,18 @@ BeautifulSoup, <code>pandas.read_html</code> oder in R weiterverarbeitet werden 
 <div class="doc doc-object doc-function">
 
 
-<h3 id="hexscrapepy.lsf_scraper.fetch_lsf_course_html_expanded" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">fetch_lsf_course_html_expanded</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">timeout_ms</span><span class="o">=</span><span class="mi">30000</span><span class="p">)</span></code>
+<h3 id="hexscrapepy.lsf_scraper.lsf_fetch_course_html_expanded" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">lsf_fetch_course_html_expanded</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">timeout_ms</span><span class="o">=</span><span class="mi">30000</span><span class="p">)</span></code>
 
 </h3>
 
 
     <div class="doc doc-contents ">
 
-        <p>Lädt eine LSF-Veranstaltungsseite mit aufgeklappten Toggle-Bereichen.</p>
-<p>Einige LSF-Installationen rendern Bereiche wie <code>Inhalt</code>, <code>Termine</code> oder
+        <p>Lade eine LSF-Detailseite mit aufgeklappten Toggle-Bereichen.</p>
+<p>Einige LSF-Installationen rendern Bereiche wie <code>Inhalt</code> oder
 <code>Zugeordnete Person</code> erst nach einem Klick auf <code>veranst_toggle_*</code>.
-Dieser Fallback nutzt Playwright, öffnet alle vorhandenen Toggle-Links und
-gibt danach das resultierende HTML zurück.</p>
+Dieser Fallback nutzt Playwright und gibt anschließend das erweiterte HTML zurück.</p>
 
 
     </div>
@@ -1291,15 +1289,15 @@ gibt danach das resultierende HTML zurück.</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="hexscrapepy.lsf_scraper.normalize_url" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">normalize_url</span><span class="p">(</span><span class="n">url</span><span class="p">)</span></code>
+<h3 id="hexscrapepy.lsf_scraper.lsf_normalize_url" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">lsf_normalize_url</span><span class="p">(</span><span class="n">url</span><span class="p">)</span></code>
 
 </h3>
 
 
     <div class="doc doc-contents ">
 
-        <p>Normalize LSF URLs for duplicate detection during crawling.</p>
+        <p>Normalisiere LSF-URLs für Duplikaterkennung beim Crawling.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -1321,7 +1319,7 @@ gibt danach das resultierende HTML zurück.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Raw URL from the LSF navigation tree.</p>
+                <p>Rohe URL aus der LSF-Navigation.</p>
               </div>
             </td>
             <td>
@@ -1346,7 +1344,7 @@ gibt danach das resultierende HTML zurück.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Stable node identifier such as <code>node_1234</code> or the original URL if no</p>
+                <p>Stabile Knotenkennung wie <code>node_1234</code> oder die Original-URL, wenn</p>
               </div>
             </td>
           </tr>
@@ -1355,7 +1353,7 @@ gibt danach das resultierende HTML zurück.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p><code>root</code> parameter could be interpreted.</p>
+                <p>kein interpretierbarer <code>root</code>-Parameter vorhanden ist.</p>
               </div>
             </td>
           </tr>
@@ -1370,165 +1368,17 @@ gibt danach das resultierende HTML zurück.</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="hexscrapepy.lsf_scraper.scrape_base_data_lsf" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">scrape_base_data_lsf</span><span class="p">(</span><span class="n">start_url</span><span class="o">=</span><span class="n">DEFAULT_START_URL</span><span class="p">,</span> <span class="n">semester_liste</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">output_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;path&#39;</span><span class="p">)</span></code>
+<h3 id="hexscrapepy.lsf_scraper.lsf_scrape_all_semesters" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">lsf_scrape_all_semesters</span><span class="p">(</span><span class="n">start_url</span><span class="p">,</span> <span class="n">semester_liste</span><span class="p">,</span> <span class="n">output_dir</span><span class="p">,</span> <span class="n">url_column</span><span class="o">=</span><span class="s1">&#39;URL_Event&#39;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;path&#39;</span><span class="p">,</span> <span class="n">include_html</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">html_column</span><span class="o">=</span><span class="s1">&#39;html&#39;</span><span class="p">)</span></code>
 
 </h3>
 
 
     <div class="doc doc-contents ">
 
-        <p>Collect base course data from an LSF lecture directory.</p>
-<p>This is the main entry point when you want a semester-level course list
-without scraping the individual course detail pages yet.</p>
-
-
-<p><span class="doc-section-title">Parameters:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Description</th>
-          <th>Default</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>start_url</code>
-            </td>
-            <td>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>Start URL of the target LSF instance.</p>
-              </div>
-            </td>
-            <td>
-                  <code><span title="hexscrapepy.lsf_scraper.DEFAULT_START_URL">DEFAULT_START_URL</span></code>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>semester_liste</code>
-            </td>
-            <td>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>Semester labels to collect.</p>
-              </div>
-            </td>
-            <td>
-                  <code>None</code>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>output_dir</code>
-            </td>
-            <td>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>Target directory for <code>base_data.csv</code>.</p>
-              </div>
-            </td>
-            <td>
-                  <code>None</code>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>method</code>
-            </td>
-            <td>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p><code>"path"</code> for recursive tree traversal or <code>"search"</code> for
-the search-mask workflow.</p>
-              </div>
-            </td>
-            <td>
-                  <code>&#39;path&#39;</code>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-    <p><span class="doc-section-title">Returns:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>No in-memory return value. Results are written to disk.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<p><span class="doc-section-title">Raises:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                  <code><span title="ValueError">ValueError</span></code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>If <code>output_dir</code> is missing or <code>method</code> is invalid.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
-<h3 id="hexscrapepy.lsf_scraper.scrape_lsf_all_semesters" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">scrape_lsf_all_semesters</span><span class="p">(</span><span class="n">start_url</span><span class="p">,</span> <span class="n">semester_liste</span><span class="p">,</span> <span class="n">output_dir</span><span class="p">,</span> <span class="n">url_column</span><span class="o">=</span><span class="s1">&#39;URL_Event&#39;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;path&#39;</span><span class="p">,</span> <span class="n">include_html</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">html_column</span><span class="o">=</span><span class="s1">&#39;html&#39;</span><span class="p">)</span></code>
-
-</h3>
-
-
-    <div class="doc doc-contents ">
-
-        <p>Führt den vollständigen LSF-Workflow pro Semester aus.</p>
-<p>Pro Semester werden nacheinander:
-1. Basisdaten mit <code>scrape_base_data_lsf</code> geladen,
-2. Duplikate in der Basisdatei entfernt,
-3. Detaildaten mit <code>scrape_lsf_veranstaltungen</code> gescrapt,
-4. semester-spezifische CSV/JSON-Dateien gespeichert.</p>
-<p>Dateien im <code>output_dir</code>:
-- Pro Semester ein Unterordner <code>&lt;semester&gt;/</code>
-- Darin <code>base_data_&lt;semester-token&gt;.csv</code> und
-  <code>course_data_&lt;semester-token&gt;.json</code></p>
+        <p>Führe den vollständigen LSF-Workflow für mehrere Semester aus.</p>
+<p>Pro Semester werden Basisdaten erzeugt, Duplikate entfernt, Detailseiten
+gescrapt und die Ergebnisse in semesterbezogenen Dateien gespeichert.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -1614,7 +1464,7 @@ the search-mask workflow.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Erhebungsmethode für den Basislauf ("path" oder "search").</p>
+                <p>Methode für den Basislauf, entweder <code>"path"</code> oder <code>"search"</code>.</p>
               </div>
             </td>
             <td>
@@ -1630,8 +1480,7 @@ the search-mask workflow.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Wenn <code>True</code>, wird das rohe HTML jeder Kursdetailseite
-im Ergebnis gespeichert.</p>
+                <p>Wenn <code>True</code>, wird das rohe HTML jeder Detailseite gespeichert.</p>
               </div>
             </td>
             <td>
@@ -1673,7 +1522,7 @@ im Ergebnis gespeichert.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Dict mit Semestername als Key und gescraptem DataFrame als Value.</p>
+                <p>Dictionary mit Semestername als Schlüssel und gescraptem DataFrame als Wert.</p>
               </div>
             </td>
           </tr>
@@ -1688,20 +1537,158 @@ im Ergebnis gespeichert.</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="hexscrapepy.lsf_scraper.scrape_lsf_veranstaltungen" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">scrape_lsf_veranstaltungen</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">url_column</span><span class="p">,</span> <span class="n">include_html</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">html_column</span><span class="o">=</span><span class="s1">&#39;html&#39;</span><span class="p">,</span> <span class="n">existing_results</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_every</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+<h3 id="hexscrapepy.lsf_scraper.lsf_scrape_base_data" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">lsf_scrape_base_data</span><span class="p">(</span><span class="n">start_url</span><span class="o">=</span><span class="n">DEFAULT_START_URL</span><span class="p">,</span> <span class="n">semester_liste</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">output_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;path&#39;</span><span class="p">)</span></code>
 
 </h3>
 
 
     <div class="doc doc-contents ">
 
-        <p>Lädt und parst LSF-Detailseiten für eine Liste von Veranstaltungs-URLs.</p>
-<p>Typischer Einsatz:
-Ein vorgeschalteter Basislauf liefert eine Tabelle mit <code>URL_Event</code>.
-Diese Funktion ruft jede Detailseite auf und ergänzt dazu die inhaltlichen
-Felder wie Titel, Grunddaten, Termine, Personen, Studiengänge oder
-<code>Weitere Angaben</code>.</p>
+        <p>Erzeuge die Basisdaten eines oder mehrerer Semester aus einem LSF.</p>
+<p>Die Funktion sammelt zunächst nur die Veranstaltungslisten und lädt noch
+keine Detailseiten einzelner Kurse.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>start_url</code>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Start-URL der Ziel-LSF-Instanz.</p>
+              </div>
+            </td>
+            <td>
+                  <code><span title="hexscrapepy.lsf_scraper.DEFAULT_START_URL">DEFAULT_START_URL</span></code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>semester_liste</code>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Liste der zu erhebenden Semesterbezeichnungen.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>output_dir</code>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Zielordner für <code>base_data.csv</code>.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>method</code>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p><code>"path"</code> für Baum-Navigation oder <code>"search"</code> für die Suchmaske.</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;path&#39;</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Kein In-Memory-Ergebnis. Die Basisdaten werden in Dateien geschrieben.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="ValueError">ValueError</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Wenn <code>output_dir</code> fehlt oder <code>method</code> ungültig ist.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="hexscrapepy.lsf_scraper.lsf_scrape_veranstaltungsdetails" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">lsf_scrape_veranstaltungsdetails</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">url_column</span><span class="p">,</span> <span class="n">include_html</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">html_column</span><span class="o">=</span><span class="s1">&#39;html&#39;</span><span class="p">,</span> <span class="n">existing_results</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_every</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Lade und parse LSF-Detailseiten für eine Liste von Veranstaltungs-URLs.</p>
+<p>Ein vorgeschalteter Basislauf liefert typischerweise eine Tabelle mit
+<code>URL_Event</code>. Diese Funktion ruft jede Detailseite auf und ergänzt daraus
+Titel, Grunddaten, Termine, Personen, Studiengänge, Module und weitere Angaben.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -1724,7 +1711,7 @@ Felder wie Titel, Grunddaten, Termine, Personen, Studiengänge oder
             </td>
             <td>
               <div class="doc-md-description">
-                <p>DataFrame mit einer Spalte, die LSF-URLs enthält</p>
+                <p>DataFrame mit einer Spalte für LSF-URLs.</p>
               </div>
             </td>
             <td>
@@ -1740,7 +1727,7 @@ Felder wie Titel, Grunddaten, Termine, Personen, Studiengänge oder
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Name der Spalte mit den URLs</p>
+                <p>Name der Spalte mit den URLs.</p>
               </div>
             </td>
             <td>
@@ -1756,8 +1743,7 @@ Felder wie Titel, Grunddaten, Termine, Personen, Studiengänge oder
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Wenn <code>True</code>, wird das rohe HTML der Detailseite in
-<code>html_column</code> gespeichert.</p>
+                <p>Wenn <code>True</code>, wird das rohe HTML zusätzlich gespeichert.</p>
               </div>
             </td>
             <td>
@@ -1789,8 +1775,7 @@ Felder wie Titel, Grunddaten, Termine, Personen, Studiengänge oder
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Bereits vorhandene Detaildaten für Resume anhand von
-<code>url_column</code>.</p>
+                <p>Bereits vorhandene Detaildaten für Resume-Läufe.</p>
               </div>
             </td>
             <td>
@@ -1806,7 +1791,7 @@ Felder wie Titel, Grunddaten, Termine, Personen, Studiengänge oder
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Optionaler JSON-Pfad für Zwischenstände und finale Ergebnisse.</p>
+                <p>Optionaler JSON-Pfad für Checkpoints und finale Ergebnisse.</p>
               </div>
             </td>
             <td>
@@ -1822,7 +1807,7 @@ Felder wie Titel, Grunddaten, Termine, Personen, Studiengänge oder
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Optionales Checkpoint-Intervall in Anzahl neu gescrapter URLs.</p>
+                <p>Checkpoint-Intervall in Anzahl neu gescrapter URLs.</p>
               </div>
             </td>
             <td>
@@ -1848,7 +1833,7 @@ Felder wie Titel, Grunddaten, Termine, Personen, Studiengänge oder
             </td>
             <td>
               <div class="doc-md-description">
-                <p>DataFrame mit den ursprünglichen Daten plus allen erfolgreich</p>
+                <p>DataFrame mit den ursprünglichen Eingabedaten plus allen erfolgreich</p>
               </div>
             </td>
           </tr>
@@ -1858,17 +1843,7 @@ Felder wie Titel, Grunddaten, Termine, Personen, Studiengänge oder
             </td>
             <td>
               <div class="doc-md-description">
-                <p>extrahierten Zusatzspalten. Zusatzspalten, die über alle Zeilen komplett</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                  <code><span title="pandas.DataFrame">DataFrame</span></code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>leer bleiben, werden am Ende automatisch wieder entfernt.</p>
+                <p>extrahierten Zusatzspalten.</p>
               </div>
             </td>
           </tr>
@@ -1883,15 +1858,15 @@ Felder wie Titel, Grunddaten, Termine, Personen, Studiengänge oder
 <div class="doc doc-object doc-function">
 
 
-<h3 id="hexscrapepy.lsf_scraper.select_semester" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">select_semester</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">semester_name</span><span class="p">)</span></code>
+<h3 id="hexscrapepy.lsf_scraper.lsf_select_semester" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">lsf_select_semester</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">semester_name</span><span class="p">)</span></code>
 
 </h3>
 
 
     <div class="doc doc-contents ">
 
-        <p>Navigate to the requested semester and open the lecture directory.</p>
+        <p>Wechsle im LSF zum gewünschten Semester und öffne das Vorlesungsverzeichnis.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -1913,7 +1888,7 @@ Felder wie Titel, Grunddaten, Termine, Personen, Studiengänge oder
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Active Playwright page.</p>
+                <p>Aktive Playwright-Seite.</p>
               </div>
             </td>
             <td>
@@ -1929,7 +1904,7 @@ Felder wie Titel, Grunddaten, Termine, Personen, Studiengänge oder
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Exact visible semester label in the target LSF instance.</p>
+                <p>Exakt sichtbare Semesterbezeichnung im Ziel-LSF.</p>
               </div>
             </td>
             <td>
@@ -2012,6 +1987,7 @@ wirklich genutzt wird.</p>
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
         <script src="../js/base.js"></script>
+        <script src="../_static/logo.js"></script>
         <script src="../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">

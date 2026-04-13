@@ -18,6 +18,7 @@
         <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
         <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
         <link href="../assets/_mkdocstrings.css" rel="stylesheet">
+        <link href="../_static/logo.css" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
         <script>hljs.highlightAll();</script> 
     </head>
@@ -156,15 +157,15 @@
 jede gefundene Veranstaltung im Detail auswerten.</p>
 <h2 id="wichtigste-einstiegsfunktionen">Wichtigste Einstiegsfunktionen</h2>
 <ul>
-<li><code>scrape_base_data_lsf()</code>: erstellt die Veranstaltungsliste eines oder
+<li><code>lsf_scrape_base_data()</code>: erstellt die Veranstaltungsliste eines oder
   mehrerer Semester</li>
-<li><code>scrape_lsf_veranstaltungen()</code>: lädt die Detailseiten zu vorhandenen
+<li><code>lsf_scrape_veranstaltungsdetails()</code>: lädt die Detailseiten zu vorhandenen
   Veranstaltungs-URLs und ergänzt die inhaltlichen Felder</li>
-<li><code>scrape_lsf_all_semesters()</code>: kombiniert beide Schritte zu einem kompletten
+<li><code>lsf_scrape_all_semesters()</code>: kombiniert beide Schritte zu einem kompletten
   Semesterlauf</li>
 </ul>
 <h2 id="zwei-wege-zu-den-basisdaten">Zwei Wege zu den Basisdaten</h2>
-<p><code>scrape_base_data_lsf()</code> unterstützt zwei Modi:</p>
+<p><code>lsf_scrape_base_data()</code> unterstützt zwei Modi:</p>
 <ul>
 <li><code>method="path"</code>: rekursive Navigation durch die Baumstruktur des
   Vorlesungsverzeichnisses</li>
@@ -178,10 +179,10 @@ jede gefundene Veranstaltung im Detail auswerten.</p>
 </ul>
 <h2 id="ablauf-im-detail">Ablauf im Detail</h2>
 <h3 id="1-semester-auswahlen">1. Semester auswählen</h3>
-<p><code>select_semester()</code> navigiert innerhalb des LSF zum gewünschten Semester und
+<p><code>lsf_select_semester()</code> navigiert innerhalb des LSF zum gewünschten Semester und
 öffnet das Vorlesungsverzeichnis.</p>
 <h3 id="2-basisdaten-einsammeln">2. Basisdaten einsammeln</h3>
-<p>Je nach Modus verwendet <code>scrape_base_data_lsf()</code> intern:</p>
+<p>Je nach Modus verwendet <code>lsf_scrape_base_data()</code> intern:</p>
 <ul>
 <li><code>_scrape_via_path()</code></li>
 <li><code>_scrape_via_search()</code></li>
@@ -191,35 +192,35 @@ Veranstaltungstabellen einheitlich verarbeitet werden:</p>
 <ul>
 <li><code>_find_event_tables()</code></li>
 <li><code>_parse_event_table()</code></li>
-<li><code>normalize_url()</code></li>
+<li><code>lsf_normalize_url()</code></li>
 </ul>
 <h3 id="3-detailseiten-laden">3. Detailseiten laden</h3>
-<p><code>scrape_lsf_veranstaltungen()</code> ruft jede Veranstaltungsseite einzeln ab. Im
-Normalfall passiert das zunächst über <code>fetch_lsf_course_html()</code>.</p>
+<p><code>lsf_scrape_veranstaltungsdetails()</code> ruft jede Veranstaltungsseite einzeln ab. Im
+Normalfall passiert das zunächst über <code>lsf_fetch_course_html()</code>.</p>
 <p>Wenn eine LSF-Instanz Inhalte erst nach dem Aufklappen von Bereichen sichtbar
-macht, wird intern bei Bedarf auf <code>fetch_lsf_course_html_expanded()</code>
+macht, wird intern bei Bedarf auf <code>lsf_fetch_course_html_expanded()</code>
 umgeschaltet.</p>
 <h3 id="4-inhalte-aus-detailseiten-parsen">4. Inhalte aus Detailseiten parsen</h3>
 <p>Für die einzelnen Inhaltsblöcke gibt es getrennte Parser. Dazu gehören zum
 Beispiel:</p>
 <ul>
-<li><code>extract_veranstaltungstitel_lsf()</code></li>
-<li><code>extract_grunddaten_lsf()</code></li>
-<li><code>extract_termine_lsf()</code></li>
-<li><code>extract_dozenten_lsf()</code></li>
-<li><code>extract_zugeordnete_personen_lsf()</code></li>
-<li><code>extract_studiengaenge_lsf()</code></li>
-<li><code>extract_module_lsf()</code></li>
-<li><code>extract_einrichtung_lsf()</code></li>
-<li><code>extract_weitere_angaben_lsf()</code></li>
+<li><code>lsf_extract_veranstaltungstitel()</code></li>
+<li><code>lsf_extract_grunddaten()</code></li>
+<li><code>lsf_extract_termine()</code></li>
+<li><code>lsf_extract_dozenten()</code></li>
+<li><code>lsf_extract_zugeordnete_personen()</code></li>
+<li><code>lsf_extract_studiengaenge()</code></li>
+<li><code>lsf_extract_module()</code></li>
+<li><code>lsf_extract_einrichtung()</code></li>
+<li><code>lsf_extract_weitere_angaben()</code></li>
 </ul>
 <h2 id="wann-nutze-ich-welche-funktion">Wann nutze ich welche Funktion?</h2>
 <ul>
-<li>Nutze <code>scrape_lsf_all_semesters()</code>, wenn du den vollständigen Workflow pro
+<li>Nutze <code>lsf_scrape_all_semesters()</code>, wenn du den vollständigen Workflow pro
   Semester in einem Schritt ausführen willst.</li>
-<li>Nutze <code>scrape_base_data_lsf()</code>, wenn du nur die Veranstaltungsliste oder die
+<li>Nutze <code>lsf_scrape_base_data()</code>, wenn du nur die Veranstaltungsliste oder die
   Basis-CSV erzeugen möchtest.</li>
-<li>Nutze <code>scrape_lsf_veranstaltungen()</code>, wenn du bereits eine Tabelle mit
+<li>Nutze <code>lsf_scrape_veranstaltungsdetails()</code>, wenn du bereits eine Tabelle mit
   <code>URL_Event</code> hast und nur die Detaildaten ergänzen willst.</li>
 <li>Nutze die <code>extract_*</code>-Funktionen, wenn du HTML-Strukturen gezielt testen,
   Parser weiterentwickeln oder nur einzelne Inhaltsbereiche auslesen möchtest.</li>
@@ -246,6 +247,7 @@ Beispiel:</p>
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
         <script src="../js/base.js"></script>
+        <script src="../_static/logo.js"></script>
         <script src="../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">

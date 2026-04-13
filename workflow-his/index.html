@@ -18,6 +18,7 @@
         <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
         <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
         <link href="../assets/_mkdocstrings.css" rel="stylesheet">
+        <link href="../_static/logo.css" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
         <script>hljs.highlightAll();</script> 
     </head>
@@ -157,16 +158,16 @@ Vorlesungsverzeichnisse.</p>
 eigentlichen Zusatzinformationen kommen anschließend aus den Kursdetailseiten.</p>
 <h2 id="wichtigste-einstiegsfunktionen">Wichtigste Einstiegsfunktionen</h2>
 <ul>
-<li><code>scrape_all_sem()</code>: führt den kompletten HISinOne-Lauf für ein oder mehrere
+<li><code>his_scrape_all_semesters()</code>: führt den kompletten HISinOne-Lauf für ein oder mehrere
   Semester aus</li>
-<li><code>fetch_base_data()</code>: lädt die Kursübersicht eines einzelnen Semesters und
+<li><code>his_fetch_base_data()</code>: lädt die Kursübersicht eines einzelnen Semesters und
   speichert sie als CSV</li>
-<li><code>scrape_data_playwright()</code>: nutzt vorhandene Basisdaten und ergänzt
+<li><code>his_scrape_detail_data_playwright()</code>: nutzt vorhandene Basisdaten und ergänzt
   Detailinformationen zu jeder Veranstaltung</li>
 </ul>
 <h2 id="ablauf-im-detail">Ablauf im Detail</h2>
 <h3 id="1-browser-session-starten">1. Browser-Session starten</h3>
-<p><code>start_his_session()</code> startet Playwright, öffnet Chromium und lädt die
+<p><code>his_start_session()</code> startet Playwright, öffnet Chromium und lädt die
 HISinOne-Startseite. Diese Funktion ist die Grundlage für alle weiteren
 Interaktionen im Browser.</p>
 <h3 id="2-semester-auswahlen">2. Semester auswählen</h3>
@@ -182,33 +183,33 @@ Interaktionen im Browser.</p>
 folgt der Pagination und baut daraus ein gemeinsames DataFrame über alle
 Trefferseiten hinweg.</p>
 <h3 id="4-detailseiten-pro-kurs-auslesen">4. Detailseiten pro Kurs auslesen</h3>
-<p><code>scrape_data_playwright()</code> nimmt die Basistabelle als Ausgangspunkt, sucht jede
+<p><code>his_scrape_detail_data_playwright()</code> nimmt die Basistabelle als Ausgangspunkt, sucht jede
 Veranstaltung erneut im HIS und öffnet dann die passende Detailseite. Dort
 werden unter anderem diese Bereiche ausgelesen:</p>
 <ul>
-<li>Termine über <code>scrape_termine()</code></li>
-<li>Inhalte aus dem Tab <code>Inhalte</code> über <code>scrape_inhalte_playwright()</code></li>
+<li>Termine über <code>his_scrape_termine()</code></li>
+<li>Inhalte aus dem Tab <code>Inhalte</code> über <code>his_scrape_inhalte_playwright()</code></li>
 <li>zugeordnete Module und Studiengänge über
-  <code>scrape_module_studiengaenge_playwright()</code></li>
+  <code>his_scrape_module_studiengaenge_playwright()</code></li>
 <li>Metadaten wie Titel, Nummer und Scraping-Datum</li>
 </ul>
 <h2 id="wann-nutze-ich-welche-funktion">Wann nutze ich welche Funktion?</h2>
 <ul>
-<li>Nutze <code>scrape_all_sem()</code>, wenn du einen möglichst vollständigen,
+<li>Nutze <code>his_scrape_all_semesters()</code>, wenn du einen möglichst vollständigen,
   wiederholbaren End-to-End-Lauf möchtest.</li>
-<li>Nutze <code>fetch_base_data()</code>, wenn du nur die Kursübersicht eines Semesters
+<li>Nutze <code>his_fetch_base_data()</code>, wenn du nur die Kursübersicht eines Semesters
   brauchst.</li>
-<li>Nutze <code>scrape_data_playwright()</code>, wenn du bereits eine Basistabelle hast und
+<li>Nutze <code>his_scrape_detail_data_playwright()</code>, wenn du bereits eine Basistabelle hast und
   nur die Detailinformationen ergänzen willst.</li>
-<li>Nutze <code>scrape_termine()</code>, <code>scrape_inhalte_playwright()</code> und
-  <code>scrape_module_studiengaenge_playwright()</code>, wenn du einzelne Bereiche einer
+<li>Nutze <code>his_scrape_termine()</code>, <code>his_scrape_inhalte_playwright()</code> und
+  <code>his_scrape_module_studiengaenge_playwright()</code>, wenn du einzelne Bereiche einer
   Detailseite gezielt testen oder separat weiterverwenden möchtest.</li>
 </ul>
 <h2 id="wichtige-technische-eigenschaften">Wichtige technische Eigenschaften</h2>
 <ul>
 <li>Das HIS-Scraping arbeitet aktiv mit einem Browser und reagiert daher stärker
   auf Änderungen in Oberfläche und Interaktionslogik.</li>
-<li><code>scrape_data_playwright()</code> enthält Resume-Logik, damit unterbrochene Läufe
+<li><code>his_scrape_detail_data_playwright()</code> enthält Resume-Logik, damit unterbrochene Läufe
   fortgesetzt werden können.</li>
 <li>Für lange Läufe gibt es automatische Browser-Neustarts, um Stabilitäts- und
   Speicherprobleme besser abzufangen.</li>
@@ -216,10 +217,10 @@ werden unter anderem diese Bereiche ausgelesen:</p>
 <h2 id="praktische-empfehlung">Praktische Empfehlung</h2>
 <p>Für produktive Läufe ist meist diese Reihenfolge am sinnvollsten:</p>
 <ol>
-<li><code>fetch_base_data()</code></li>
+<li><code>his_fetch_base_data()</code></li>
 <li>die erzeugte Basisdatei kurz prüfen</li>
-<li><code>scrape_data_playwright()</code> für die Detaildaten ausführen</li>
-<li>optional <code>scrape_all_sem()</code> verwenden, wenn der gesamte Ablauf in einem
+<li><code>his_scrape_detail_data_playwright()</code> für die Detaildaten ausführen</li>
+<li>optional <code>his_scrape_all_semesters()</code> verwenden, wenn der gesamte Ablauf in einem
    Wrapper laufen soll</li>
 </ol></div>
             </div>
@@ -235,6 +236,7 @@ werden unter anderem diese Bereiche ausgelesen:</p>
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
         <script src="../js/base.js"></script>
+        <script src="../_static/logo.js"></script>
         <script src="../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">

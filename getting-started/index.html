@@ -18,6 +18,7 @@
         <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
         <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
         <link href="../assets/_mkdocstrings.css" rel="stylesheet">
+        <link href="../_static/logo.css" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
         <script>hljs.highlightAll();</script> 
     </head>
@@ -163,8 +164,8 @@ Analysen, Datenaufbereitung oder Tests einzelner Parser.</p>
 <p>Wenn du das Paket zum ersten Mal verwendest, starte am besten nicht bei den
 kleinen Hilfsfunktionen, sondern bei den Wrappern:</p>
 <ul>
-<li>HISinOne: <code>scrape_all_sem()</code></li>
-<li>LSF: <code>scrape_lsf_all_semesters()</code></li>
+<li>HISinOne: <code>his_scrape_all_semesters()</code></li>
+<li>LSF: <code>lsf_scrape_all_semesters()</code></li>
 </ul>
 <p>Diese Funktionen übernehmen bereits einen großen Teil der Arbeit:</p>
 <ul>
@@ -204,12 +205,12 @@ Semesterlauf brauchst und möglichst wenig manuell zusammensetzen möchtest.</p>
 <p>Die öffentliche API wird über <code>hexscrapepy.__init__</code> exportiert. Besonders
 relevant für den Einstieg sind:</p>
 <ul>
-<li><code>scrape_all_sem</code></li>
-<li><code>fetch_base_data</code></li>
-<li><code>start_his_session</code></li>
-<li><code>scrape_base_data_lsf</code></li>
-<li><code>scrape_lsf_veranstaltungen</code></li>
-<li><code>scrape_lsf_all_semesters</code></li>
+<li><code>his_scrape_all_semesters</code></li>
+<li><code>his_fetch_base_data</code></li>
+<li><code>his_start_session</code></li>
+<li><code>lsf_scrape_base_data</code></li>
+<li><code>lsf_scrape_veranstaltungsdetails</code></li>
+<li><code>lsf_scrape_all_semesters</code></li>
 </ul>
 <p>Wenn du genauer verstehen möchtest, was intern passiert, findest du die
 restlichen Helfer in den API-Seiten zu HISinOne und LSF.</p></div>
@@ -226,6 +227,7 @@ restlichen Helfer in den API-Seiten zu HISinOne und LSF.</p></div>
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
         <script src="../js/base.js"></script>
+        <script src="../_static/logo.js"></script>
         <script src="../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
