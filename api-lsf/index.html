@@ -1,0 +1,2073 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>LSF-Funktionen - HEXscrapePy</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <link href="../assets/_mkdocstrings.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">HEXscrapePy</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Start</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../getting-started/" class="nav-link">Schnellstart</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Workflows</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../workflow-his/" class="dropdown-item">HISinOne</a>
+</li>
+                                    
+<li>
+    <a href="../workflow-lsf/" class="dropdown-item">LSF</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">API</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../api/" class="dropdown-item">Überblick</a>
+</li>
+                                    
+<li>
+    <a href="../api-his/" class="dropdown-item">HISinOne-Funktionen</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">LSF-Funktionen</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../api-his/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" class="nav-link disabled">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/Stifterverband/HEXscrapePy/edit/master/docs/api-lsf.md" class="nav-link"><i class="fa-brands fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#lsf-funktionen" class="nav-link">LSF-Funktionen</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#rollen-der-funktionen" class="nav-link">Rollen der Funktionen</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#typischer-ablauf" class="nav-link">Typischer Ablauf</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#referenz" class="nav-link">Referenz</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#hexscrapepy.lsf_scraper" class="nav-link">lsf_scraper</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#hexscrapepy" class="nav-link">hexscrapepy</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="lsf-funktionen">LSF-Funktionen</h1>
+<p>Diese Seite beschreibt die Funktionen aus <code>hexscrapepy.lsf_scraper</code>.</p>
+<h2 id="rollen-der-funktionen">Rollen der Funktionen</h2>
+<h3 id="offentlich-empfohlen">Öffentlich empfohlen</h3>
+<table>
+<thead>
+<tr>
+<th>Funktion</th>
+<th>Rolle</th>
+<th>Kurzbeschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>scrape_base_data_lsf</code></td>
+<td>Basisdaten</td>
+<td>erhebt Veranstaltungslisten eines oder mehrerer Semester</td>
+</tr>
+<tr>
+<td><code>scrape_lsf_veranstaltungen</code></td>
+<td>Detaildaten</td>
+<td>ergänzt Detailinformationen zu vorhandenen <code>URL_Event</code>-Links</td>
+</tr>
+<tr>
+<td><code>scrape_lsf_all_semesters</code></td>
+<td>Wrapper</td>
+<td>führt den vollständigen LSF-Workflow pro Semester aus</td>
+</tr>
+</tbody>
+</table>
+<h3 id="modular-nutzbar">Modular nutzbar</h3>
+<table>
+<thead>
+<tr>
+<th>Funktion</th>
+<th>Rolle</th>
+<th>Kurzbeschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>select_semester</code></td>
+<td>Navigation</td>
+<td>wechselt im LSF zum gewünschten Semester</td>
+</tr>
+<tr>
+<td><code>extract_veranstaltungstitel_lsf</code></td>
+<td>Extraktion</td>
+<td>liest den sichtbaren Titel einer Veranstaltung</td>
+</tr>
+<tr>
+<td><code>extract_grunddaten_lsf</code></td>
+<td>Extraktion</td>
+<td>liest strukturierte Grunddaten aus der Detailseite</td>
+</tr>
+<tr>
+<td><code>extract_termine_lsf</code></td>
+<td>Extraktion</td>
+<td>liest Terminblöcke einer Veranstaltung</td>
+</tr>
+<tr>
+<td><code>extract_dozenten_lsf</code></td>
+<td>Extraktion</td>
+<td>extrahiert Dozentinnen und Dozenten</td>
+</tr>
+<tr>
+<td><code>extract_zugeordnete_personen_lsf</code></td>
+<td>Extraktion</td>
+<td>extrahiert weitere zugeordnete Personen</td>
+</tr>
+<tr>
+<td><code>extract_studiengaenge_lsf</code></td>
+<td>Extraktion</td>
+<td>extrahiert zugeordnete Studiengänge</td>
+</tr>
+<tr>
+<td><code>extract_module_lsf</code></td>
+<td>Extraktion</td>
+<td>extrahiert zugeordnete Module</td>
+</tr>
+<tr>
+<td><code>extract_einrichtung_lsf</code></td>
+<td>Extraktion</td>
+<td>extrahiert Einrichtungen oder organisatorische Zuordnungen</td>
+</tr>
+<tr>
+<td><code>extract_weitere_angaben_lsf</code></td>
+<td>Extraktion</td>
+<td>liest weitere Angaben als strukturierte Felder</td>
+</tr>
+<tr>
+<td><code>extract_lerninhalt_lsf</code></td>
+<td>Extraktion</td>
+<td>zieht Lerninhalte aus den weiteren Angaben</td>
+</tr>
+<tr>
+<td><code>extract_kommentar_lsf</code></td>
+<td>Extraktion</td>
+<td>zieht Kommentare aus den weiteren Angaben</td>
+</tr>
+<tr>
+<td><code>fetch_lsf_course_html</code></td>
+<td>Abruf</td>
+<td>lädt die rohe HTML-Seite einer Veranstaltung</td>
+</tr>
+<tr>
+<td><code>fetch_lsf_course_html_expanded</code></td>
+<td>Abruf</td>
+<td>lädt die Seite mit aufgeklappten Toggle-Bereichen</td>
+</tr>
+</tbody>
+</table>
+<h3 id="intern-oder-technisch">Intern oder technisch</h3>
+<table>
+<thead>
+<tr>
+<th>Funktion</th>
+<th>Rolle</th>
+<th>Kurzbeschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>clean_text</code></td>
+<td>Helper</td>
+<td>normalisiert Freitext für Export und Parsing</td>
+</tr>
+<tr>
+<td><code>normalize_url</code></td>
+<td>Helper</td>
+<td>reduziert LSF-URLs auf stabile Vergleichswerte</td>
+</tr>
+<tr>
+<td><code>_scrape_via_path</code></td>
+<td>Workflow</td>
+<td>interner Basislauf über die Baumstruktur</td>
+</tr>
+<tr>
+<td><code>_scrape_via_search</code></td>
+<td>Workflow</td>
+<td>interner Basislauf über die Suchmaske</td>
+</tr>
+<tr>
+<td><code>_find_event_tables</code></td>
+<td>Parser</td>
+<td>identifiziert Tabellen mit Veranstaltungslisten</td>
+</tr>
+<tr>
+<td><code>_parse_event_table</code></td>
+<td>Parser</td>
+<td>liest einzelne Veranstaltungszeilen in Ergebnis-Dictionaries</td>
+</tr>
+<tr>
+<td><code>_find_lsf_section_table</code></td>
+<td>Parser</td>
+<td>findet Bereichstabellen robust über mehrere Signale</td>
+</tr>
+<tr>
+<td><code>_needs_expanded_lsf_fetch</code></td>
+<td>Steuerung</td>
+<td>entscheidet über Playwright-Fallback</td>
+</tr>
+<tr>
+<td><code>_load_lsf_results_json</code></td>
+<td>Resume</td>
+<td>lädt bestehende Zwischenergebnisse</td>
+</tr>
+<tr>
+<td><code>_write_lsf_results_json</code></td>
+<td>Resume</td>
+<td>schreibt Zwischenergebnisse zurück</td>
+</tr>
+<tr>
+<td><code>_build_lsf_detail_frame</code></td>
+<td>Merge</td>
+<td>reduziert Detaildaten auf mergefähige Spalten</td>
+</tr>
+</tbody>
+</table>
+<h2 id="typischer-ablauf">Typischer Ablauf</h2>
+<p>Ein vollständiger LSF-Lauf sieht meist so aus:</p>
+<ol>
+<li><code>scrape_lsf_all_semesters()</code> als Wrapper</li>
+<li>intern <code>scrape_base_data_lsf()</code> für die Basisdaten</li>
+<li>anschließend <code>scrape_lsf_veranstaltungen()</code> für die Detailseiten</li>
+<li>einzelne <code>extract_*</code>-Parser lesen strukturierte Felder aus dem HTML</li>
+</ol>
+<h2 id="referenz">Referenz</h2>
+<h3 id="komplettes-modul">Komplettes Modul</h3>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<h2 id="hexscrapepy.lsf_scraper" class="doc doc-heading">
+            <code>hexscrapepy.lsf_scraper</code>
+
+
+</h2>
+
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="hexscrapepy.lsf_scraper.clean_text" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">clean_text</span><span class="p">(</span><span class="n">text</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Normalize free text for export and parser logic.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>text</code>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Raw text or <code>None</code>.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Cleaned string with normalized whitespace, or <code>"N.N."</code> for empty input.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="hexscrapepy.lsf_scraper.extract_dozenten_lsf" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">extract_dozenten_lsf</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Extrahiert echte Dozenten-Tabellen aus einer LSF-Seite.</p>
+<p>Wichtig:
+Diese Funktion ist bewusst enger gefasst als <code>extract_zugeordnete_personen_lsf</code>.
+Sie liest nur Tabellen, die tatsächlich als <code>Durchführende Dozenten</code>
+ausgezeichnet sind. Allgemeine Personenblöcke wie <code>Zugeordnete Person</code>
+werden hier nicht mehr mit ausgewertet.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>soup</code>
+            </td>
+            <td>
+                  <code><span title="bs4.BeautifulSoup">BeautifulSoup</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>BeautifulSoup-Objekt der LSF-Seite</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>DataFrame mit einer Zeile pro Person und den Spalten</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>'dozierenden_name' und 'dozierenden_rolle'</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="hexscrapepy.lsf_scraper.extract_einrichtung_lsf" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">extract_einrichtung_lsf</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Extrahiert den Einrichtungs-Block als verschachtelte Tabelle.</p>
+<p>Anders als bei <code>Studiengänge</code> oder <code>Module</code> sind diese Tabellen oft
+sehr klein und teils zweispaltig aufgebaut. Deshalb wird hier nicht blind
+<code>read_html</code> verwendet, sondern die Tabelle zeilenweise in ein kleines
+DataFrame übersetzt.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>soup</code>
+            </td>
+            <td>
+                  <code><span title="bs4.BeautifulSoup">BeautifulSoup</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>BeautifulSoup-Objekt der LSF-Seite</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>DataFrame mit einer Zeile und der Spalte <code>einrichtung</code>.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="hexscrapepy.lsf_scraper.extract_grunddaten_lsf" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">extract_grunddaten_lsf</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Extract structured base metadata from the LSF detail page.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>soup</code>
+            </td>
+            <td>
+                  <code><span title="bs4.BeautifulSoup">BeautifulSoup</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Parsed HTML tree of the detail page.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="dict">dict</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Single-row DataFrame of the detected base metadata or an empty</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="dict">dict</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>DataFrame if the section is missing.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="hexscrapepy.lsf_scraper.extract_kommentar_lsf" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">extract_kommentar_lsf</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Extrahiert den Kommentar aus dem Block <code>Weitere Angaben</code>.</p>
+<p>Zuerst wird die generische Extraktion über <code>extract_weitere_angaben_lsf</code>
+versucht. Falls eine Uni stattdessen nur eine einzige kommentierende Zeile
+ohne saubere Überschrift liefert, gibt es darunter noch einen kleinen
+Fallback für diesen Sonderfall.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>soup</code>
+            </td>
+            <td>
+                  <code><span title="bs4.BeautifulSoup">BeautifulSoup</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>BeautifulSoup-Objekt der LSF-Seite</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>DataFrame mit einer Zeile und einer Spalte 'kommentar'.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="hexscrapepy.lsf_scraper.extract_lerninhalt_lsf" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">extract_lerninhalt_lsf</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Extrahiert <code>Lerninhalte</code> aus dem Block <code>Weitere Angaben</code>.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>soup</code>
+            </td>
+            <td>
+                  <code><span title="bs4.BeautifulSoup">BeautifulSoup</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>BeautifulSoup-Objekt der LSF-Seite</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>DataFrame mit einer Zeile und der Spalte <code>lerninhalt</code>.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="hexscrapepy.lsf_scraper.extract_module_lsf" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">extract_module_lsf</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Extrahiert den Modul-Block als verschachtelte Tabelle.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>soup</code>
+            </td>
+            <td>
+                  <code><span title="bs4.BeautifulSoup">BeautifulSoup</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>BeautifulSoup-Objekt der LSF-Seite</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+        <p>Returns:
+    DataFrame mit einer Zeile und der Spalte <code>module</code>.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="hexscrapepy.lsf_scraper.extract_studiengaenge_lsf" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">extract_studiengaenge_lsf</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Extrahiert den Studiengangs-Block als verschachtelte Tabelle.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>soup</code>
+            </td>
+            <td>
+                  <code><span title="bs4.BeautifulSoup">BeautifulSoup</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>BeautifulSoup-Objekt der LSF-Seite</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>DataFrame mit einer Zeile und der Spalte <code>studiengaenge</code>.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>In dieser Zelle liegt wiederum ein DataFrame mit den Originalspalten</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>der Studiengangstabelle.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="hexscrapepy.lsf_scraper.extract_termine_lsf" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">extract_termine_lsf</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Extract all schedule rows from an LSF detail page.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>soup</code>
+            </td>
+            <td>
+                  <code><span title="bs4.BeautifulSoup">BeautifulSoup</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Parsed HTML tree of the detail page.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>DataFrame with one row per schedule entry.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="hexscrapepy.lsf_scraper.extract_veranstaltungstitel_lsf" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">extract_veranstaltungstitel_lsf</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Extract the visible course title from an LSF detail page.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>soup</code>
+            </td>
+            <td>
+                  <code><span title="bs4.BeautifulSoup">BeautifulSoup</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Parsed HTML tree of the detail page.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Single-row DataFrame with column <code>veranstaltungstitel</code> or an empty</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>DataFrame if no title could be detected.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="hexscrapepy.lsf_scraper.extract_weitere_angaben_lsf" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">extract_weitere_angaben_lsf</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Extrahiert alle Felder aus <code>Weitere Angaben zur Veranstaltung</code>.</p>
+<p>Die LSF-Ansicht kapselt diesen Bereich teils in auf-/zuklappbare Container
+(z.B. <code>veranst_slide_inhalt</code>). Für das Parsing ist das unkritisch, solange
+die Tabelle im HTML enthalten ist. Diese Funktion liest deshalb die
+Tabellenzeilen generisch aus und liefert eine einzige Zeile mit allen
+vorhandenen Feldern zurück.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="hexscrapepy.lsf_scraper.extract_zugeordnete_personen_lsf" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">extract_zugeordnete_personen_lsf</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Extrahiert die zugeordneten Personen als verschachtelte Tabelle.</p>
+<p>Diese Funktion ist für LSF-Blöcke wie <code>Zugeordnete Person</code> oder
+<code>Verantwortliche Dozenten</code> gedacht. Das Ergebnis wird bewusst als
+verschachtelte Tabelle zurückgegeben, damit die Struktur aus dem HTML
+möglichst erhalten bleibt.</p>
+<p>Rückgabespalten der inneren Tabelle:
+- <code>zugeordnete_person</code>
+- <code>zustaendigkeit</code></p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="hexscrapepy.lsf_scraper.fetch_lsf_course_html" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">fetch_lsf_course_html</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Lädt das rohe HTML einer LSF-Veranstaltungsseite.</p>
+<p>Das HTML wird als String zurückgegeben, damit es später direkt mit
+BeautifulSoup, <code>pandas.read_html</code> oder in R weiterverarbeitet werden kann.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>url</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>URL der Veranstaltungsdetailseite.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>timeout</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Timeout des HTTP-Requests in Sekunden.</p>
+              </div>
+            </td>
+            <td>
+                  <code>30</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Rohes HTML der Antwort als String.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="hexscrapepy.lsf_scraper.fetch_lsf_course_html_expanded" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">fetch_lsf_course_html_expanded</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">timeout_ms</span><span class="o">=</span><span class="mi">30000</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Lädt eine LSF-Veranstaltungsseite mit aufgeklappten Toggle-Bereichen.</p>
+<p>Einige LSF-Installationen rendern Bereiche wie <code>Inhalt</code>, <code>Termine</code> oder
+<code>Zugeordnete Person</code> erst nach einem Klick auf <code>veranst_toggle_*</code>.
+Dieser Fallback nutzt Playwright, öffnet alle vorhandenen Toggle-Links und
+gibt danach das resultierende HTML zurück.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="hexscrapepy.lsf_scraper.normalize_url" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">normalize_url</span><span class="p">(</span><span class="n">url</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Normalize LSF URLs for duplicate detection during crawling.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>url</code>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Raw URL from the LSF navigation tree.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Stable node identifier such as <code>node_1234</code> or the original URL if no</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p><code>root</code> parameter could be interpreted.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="hexscrapepy.lsf_scraper.scrape_base_data_lsf" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">scrape_base_data_lsf</span><span class="p">(</span><span class="n">start_url</span><span class="o">=</span><span class="n">DEFAULT_START_URL</span><span class="p">,</span> <span class="n">semester_liste</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">output_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;path&#39;</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Collect base course data from an LSF lecture directory.</p>
+<p>This is the main entry point when you want a semester-level course list
+without scraping the individual course detail pages yet.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>start_url</code>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Start URL of the target LSF instance.</p>
+              </div>
+            </td>
+            <td>
+                  <code><span title="hexscrapepy.lsf_scraper.DEFAULT_START_URL">DEFAULT_START_URL</span></code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>semester_liste</code>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Semester labels to collect.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>output_dir</code>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Target directory for <code>base_data.csv</code>.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>method</code>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p><code>"path"</code> for recursive tree traversal or <code>"search"</code> for
+the search-mask workflow.</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;path&#39;</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>No in-memory return value. Results are written to disk.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="ValueError">ValueError</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>output_dir</code> is missing or <code>method</code> is invalid.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="hexscrapepy.lsf_scraper.scrape_lsf_all_semesters" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">scrape_lsf_all_semesters</span><span class="p">(</span><span class="n">start_url</span><span class="p">,</span> <span class="n">semester_liste</span><span class="p">,</span> <span class="n">output_dir</span><span class="p">,</span> <span class="n">url_column</span><span class="o">=</span><span class="s1">&#39;URL_Event&#39;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;path&#39;</span><span class="p">,</span> <span class="n">include_html</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">html_column</span><span class="o">=</span><span class="s1">&#39;html&#39;</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Führt den vollständigen LSF-Workflow pro Semester aus.</p>
+<p>Pro Semester werden nacheinander:
+1. Basisdaten mit <code>scrape_base_data_lsf</code> geladen,
+2. Duplikate in der Basisdatei entfernt,
+3. Detaildaten mit <code>scrape_lsf_veranstaltungen</code> gescrapt,
+4. semester-spezifische CSV/JSON-Dateien gespeichert.</p>
+<p>Dateien im <code>output_dir</code>:
+- Pro Semester ein Unterordner <code>&lt;semester&gt;/</code>
+- Darin <code>base_data_&lt;semester-token&gt;.csv</code> und
+  <code>course_data_&lt;semester-token&gt;.json</code></p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>start_url</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>LSF-Start-URL der Universität.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>semester_liste</code>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Liste der gewünschten Semesterbezeichnungen.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>output_dir</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Zielordner für alle erzeugten Dateien.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>url_column</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Spalte mit Veranstaltungs-URLs für das Detail-Scraping.</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;URL_Event&#39;</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>method</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Erhebungsmethode für den Basislauf ("path" oder "search").</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;path&#39;</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>include_html</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Wenn <code>True</code>, wird das rohe HTML jeder Kursdetailseite
+im Ergebnis gespeichert.</p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>html_column</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Name der Spalte für das rohe HTML.</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;html&#39;</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="dict">dict</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Dict mit Semestername als Key und gescraptem DataFrame als Value.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="hexscrapepy.lsf_scraper.scrape_lsf_veranstaltungen" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">scrape_lsf_veranstaltungen</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">url_column</span><span class="p">,</span> <span class="n">include_html</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">html_column</span><span class="o">=</span><span class="s1">&#39;html&#39;</span><span class="p">,</span> <span class="n">existing_results</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_every</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Lädt und parst LSF-Detailseiten für eine Liste von Veranstaltungs-URLs.</p>
+<p>Typischer Einsatz:
+Ein vorgeschalteter Basislauf liefert eine Tabelle mit <code>URL_Event</code>.
+Diese Funktion ruft jede Detailseite auf und ergänzt dazu die inhaltlichen
+Felder wie Titel, Grunddaten, Termine, Personen, Studiengänge oder
+<code>Weitere Angaben</code>.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>df</code>
+            </td>
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>DataFrame mit einer Spalte, die LSF-URLs enthält</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>url_column</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Name der Spalte mit den URLs</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>include_html</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Wenn <code>True</code>, wird das rohe HTML der Detailseite in
+<code>html_column</code> gespeichert.</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>html_column</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Name der Spalte für das rohe HTML.</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;html&#39;</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>existing_results</code>
+            </td>
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span> | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Bereits vorhandene Detaildaten für Resume anhand von
+<code>url_column</code>.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>save_path</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span> | <span title="pathlib.Path">Path</span> | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Optionaler JSON-Pfad für Zwischenstände und finale Ergebnisse.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>save_every</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span> | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Optionales Checkpoint-Intervall in Anzahl neu gescrapter URLs.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>DataFrame mit den ursprünglichen Daten plus allen erfolgreich</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>extrahierten Zusatzspalten. Zusatzspalten, die über alle Zeilen komplett</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>leer bleiben, werden am Ende automatisch wieder entfernt.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="hexscrapepy.lsf_scraper.select_semester" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">select_semester</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">semester_name</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Navigate to the requested semester and open the lecture directory.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>page</code>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Active Playwright page.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>semester_name</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Exact visible semester label in the target LSF instance.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div><h3 id="offentliche-paket-api">Öffentliche Paket-API</h3>
+<p>Diese API wird über <code>hexscrapepy</code> direkt exportiert:</p>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<h2 id="hexscrapepy" class="doc doc-heading">
+            <code>hexscrapepy</code>
+
+
+</h2>
+
+    <div class="doc doc-contents first">
+
+        <p>HEXscrapePy package.</p>
+<p>Die öffentliche API wird per Lazy-Import bereitgestellt. Dadurch bleibt ein
+einfaches <code>import hexscrapepy</code> leichtgewichtig und zieht optionale schwerere
+Abhängigkeiten wie Playwright erst dann nach, wenn eine entsprechende Funktion
+wirklich genutzt wird.</p>
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

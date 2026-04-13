@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>HISinOne - HEXscrapePy</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <link href="../assets/_mkdocstrings.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">HEXscrapePy</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Start</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../getting-started/" class="nav-link">Schnellstart</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Workflows</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">HISinOne</a>
+</li>
+                                    
+<li>
+    <a href="../workflow-lsf/" class="dropdown-item">LSF</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">API</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../api/" class="dropdown-item">Überblick</a>
+</li>
+                                    
+<li>
+    <a href="../api-his/" class="dropdown-item">HISinOne-Funktionen</a>
+</li>
+                                    
+<li>
+    <a href="../api-lsf/" class="dropdown-item">LSF-Funktionen</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../getting-started/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../workflow-lsf/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/Stifterverband/HEXscrapePy/edit/master/docs/workflow-his.md" class="nav-link"><i class="fa-brands fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#hisinone-workflow" class="nav-link">HISinOne-Workflow</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#zielbild" class="nav-link">Zielbild</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#wichtigste-einstiegsfunktionen" class="nav-link">Wichtigste Einstiegsfunktionen</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#ablauf-im-detail" class="nav-link">Ablauf im Detail</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#wann-nutze-ich-welche-funktion" class="nav-link">Wann nutze ich welche Funktion?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#wichtige-technische-eigenschaften" class="nav-link">Wichtige technische Eigenschaften</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#praktische-empfehlung" class="nav-link">Praktische Empfehlung</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="hisinone-workflow">HISinOne-Workflow</h1>
+<p>Diese Seite beschreibt den typischen Ablauf für das Scraping von HISinOne- oder HIS-basierten Vorlesungsverzeichnissen.</p>
+<h2 id="zielbild">Zielbild</h2>
+<p>Der HISinOne-Teil von <code>HEXscrapePy</code> arbeitet in zwei Stufen:</p>
+<ol>
+<li>Basisdaten laden</li>
+<li>Detaildaten für einzelne Veranstaltungen nachziehen</li>
+</ol>
+<p>Die Basisdaten sind vor allem die Veranstaltungsliste eines Semesters. Die Detaildaten kommen danach aus den einzelnen Kursseiten.</p>
+<h2 id="wichtigste-einstiegsfunktionen">Wichtigste Einstiegsfunktionen</h2>
+<ul>
+<li><code>scrape_all_sem()</code>: kompletter Lauf über mehrere Semester</li>
+<li><code>fetch_base_data()</code>: lädt zuerst die reine Kursübersicht eines Semesters</li>
+<li><code>scrape_data_playwright()</code>: ergänzt Detaildaten zu den einzelnen Kursen</li>
+</ul>
+<h2 id="ablauf-im-detail">Ablauf im Detail</h2>
+<h3 id="1-browser-session-starten">1. Browser-Session starten</h3>
+<p><code>start_his_session()</code> startet Playwright, öffnet Chromium und lädt die Start-URL des HIS-Systems.</p>
+<h3 id="2-semester-auswahlen">2. Semester auswählen</h3>
+<p>Je nach Schritt im Workflow wird eines von zwei Helfern verwendet:</p>
+<ul>
+<li><code>his_select_semester_base_data()</code> für den Lauf, der die Kursübersicht lädt</li>
+<li><code>his_select_semester()</code> für spätere Such- und Detailabläufe</li>
+</ul>
+<h3 id="3-kursubersicht-einsammeln">3. Kursübersicht einsammeln</h3>
+<p><code>his_search_and_get_data()</code> klickt sich durch die Trefferseiten und liest die HTML-Tabellen in ein DataFrame ein.</p>
+<h3 id="4-detailseiten-pro-kurs-aufrufen">4. Detailseiten pro Kurs aufrufen</h3>
+<p><code>scrape_data_playwright()</code> nutzt die Basisdaten, sucht einzelne Veranstaltungen und ergänzt Felder wie:</p>
+<ul>
+<li>Termine</li>
+<li>Inhalte</li>
+<li>Module und Studiengänge</li>
+<li>Metadaten zum Scraping-Zeitpunkt</li>
+</ul>
+<h2 id="wann-nutze-ich-welche-funktion">Wann nutze ich welche Funktion?</h2>
+<ul>
+<li>Nutze <code>scrape_all_sem()</code>, wenn du einen vollständigen End-to-End-Lauf willst.</li>
+<li>Nutze <code>fetch_base_data()</code>, wenn du nur die Übersichtstabelle brauchst.</li>
+<li>Nutze <code>scrape_data_playwright()</code>, wenn du bereits eine Basistabelle hast und nur die Detaildaten nachziehen möchtest.</li>
+<li>Nutze <code>scrape_termine()</code>, <code>scrape_inhalte_playwright()</code> und <code>scrape_module_studiengaenge_playwright()</code>, wenn du gezielt bestimmte Bereiche einer Detailseite testen oder extrahieren willst.</li>
+</ul>
+<h2 id="wichtige-technische-eigenschaften">Wichtige technische Eigenschaften</h2>
+<ul>
+<li>Das HIS-Scraping nutzt aktiv einen Browser und ist daher empfindlicher gegenüber Layout-Änderungen der Zielseite.</li>
+<li><code>scrape_data_playwright()</code> enthält Resume-Logik und speichert Zwischenstände.</li>
+<li>Für lange Läufe gibt es automatische Browser-Neustarts, um Abstürze und Speicherprobleme abzufangen.</li>
+</ul>
+<h2 id="praktische-empfehlung">Praktische Empfehlung</h2>
+<p>Für produktive Läufe ist meist diese Reihenfolge am sinnvollsten:</p>
+<ol>
+<li><code>fetch_base_data()</code></li>
+<li>Kontrolle der exportierten Basisdatei</li>
+<li><code>scrape_data_playwright()</code></li>
+<li>Optional: kompletter Wrapper <code>scrape_all_sem()</code> für wiederholbare Semesterläufe</li>
+</ol></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

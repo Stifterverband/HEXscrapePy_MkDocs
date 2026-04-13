@@ -1,0 +1,1643 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>HISinOne-Funktionen - HEXscrapePy</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <link href="../assets/_mkdocstrings.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">HEXscrapePy</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Start</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../getting-started/" class="nav-link">Schnellstart</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Workflows</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../workflow-his/" class="dropdown-item">HISinOne</a>
+</li>
+                                    
+<li>
+    <a href="../workflow-lsf/" class="dropdown-item">LSF</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">API</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../api/" class="dropdown-item">Überblick</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">HISinOne-Funktionen</a>
+</li>
+                                    
+<li>
+    <a href="../api-lsf/" class="dropdown-item">LSF-Funktionen</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../api/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../api-lsf/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/Stifterverband/HEXscrapePy/edit/master/docs/api-his.md" class="nav-link"><i class="fa-brands fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#hisinone-funktionen" class="nav-link">HISinOne-Funktionen</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#rollen-der-funktionen" class="nav-link">Rollen der Funktionen</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#typischer-ablauf" class="nav-link">Typischer Ablauf</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#referenz" class="nav-link">Referenz</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#hexscrapepy.scraper" class="nav-link">scraper</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#hexscrapepy" class="nav-link">hexscrapepy</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="hisinone-funktionen">HISinOne-Funktionen</h1>
+<p>Diese Seite beschreibt die Funktionen aus <code>hexscrapepy.scraper</code>.</p>
+<h2 id="rollen-der-funktionen">Rollen der Funktionen</h2>
+<h3 id="offentlich-empfohlen">Öffentlich empfohlen</h3>
+<table>
+<thead>
+<tr>
+<th>Funktion</th>
+<th>Rolle</th>
+<th>Kurzbeschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>scrape_all_sem</code></td>
+<td>Wrapper</td>
+<td>führt einen vollständigen HISinOne-Lauf über mehrere Semester aus</td>
+</tr>
+<tr>
+<td><code>fetch_base_data</code></td>
+<td>Basisdaten</td>
+<td>lädt die Veranstaltungsliste eines Semesters und speichert sie als CSV</td>
+</tr>
+<tr>
+<td><code>scrape_data_playwright</code></td>
+<td>Detaildaten</td>
+<td>ergänzt Detailinformationen zu bereits bekannten Veranstaltungen</td>
+</tr>
+<tr>
+<td><code>start_his_session</code></td>
+<td>Session</td>
+<td>startet Browser, Context und Seite für HISinOne</td>
+</tr>
+</tbody>
+</table>
+<h3 id="modular-nutzbar">Modular nutzbar</h3>
+<table>
+<thead>
+<tr>
+<th>Funktion</th>
+<th>Rolle</th>
+<th>Kurzbeschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>his_select_semester_base_data</code></td>
+<td>Navigation</td>
+<td>wählt ein Semester für den Basisdatenlauf aus</td>
+</tr>
+<tr>
+<td><code>his_select_semester</code></td>
+<td>Navigation</td>
+<td>setzt das Semester für spätere Such- oder Detailschritte</td>
+</tr>
+<tr>
+<td><code>his_search_and_get_data</code></td>
+<td>Extraktion</td>
+<td>liest Trefferlisten seitenweise in DataFrames ein</td>
+</tr>
+<tr>
+<td><code>scrape_termine</code></td>
+<td>Extraktion</td>
+<td>liest Termin-Informationen aus einer Detailseite</td>
+</tr>
+<tr>
+<td><code>scrape_inhalte_playwright</code></td>
+<td>Extraktion</td>
+<td>liest Inhalte aus dem Tab <code>Inhalte</code></td>
+</tr>
+<tr>
+<td><code>scrape_module_studiengaenge_playwright</code></td>
+<td>Extraktion</td>
+<td>liest zugeordnete Module und Studiengänge</td>
+</tr>
+</tbody>
+</table>
+<h3 id="intern-oder-technisch">Intern oder technisch</h3>
+<table>
+<thead>
+<tr>
+<th>Funktion</th>
+<th>Rolle</th>
+<th>Kurzbeschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sanitize_semester_name</code></td>
+<td>Helper</td>
+<td>erzeugt robuste Kurzkennungen für Semester</td>
+</tr>
+<tr>
+<td><code>check_dependencies</code></td>
+<td>Helper</td>
+<td>prüft, ob zentrale Python-Abhängigkeiten vorhanden sind</td>
+</tr>
+<tr>
+<td><code>clean_prefixes</code></td>
+<td>Helper</td>
+<td>entfernt störende Vorsilben aus Tabellenzellen</td>
+</tr>
+<tr>
+<td><code>clean_titles</code></td>
+<td>Helper</td>
+<td>normalisiert Titel für Suche und Resume-Abgleich</td>
+</tr>
+<tr>
+<td><code>normalize_his_text</code></td>
+<td>Helper</td>
+<td>macht HIS-Texte vergleichbar</td>
+</tr>
+</tbody>
+</table>
+<h2 id="typischer-ablauf">Typischer Ablauf</h2>
+<p>Ein vollständiger HISinOne-Lauf sieht meist so aus:</p>
+<ol>
+<li><code>scrape_all_sem()</code> oder manuell <code>fetch_base_data()</code></li>
+<li>Basisdatei prüfen</li>
+<li><code>scrape_data_playwright()</code> für Detaildaten</li>
+<li>interne Extraktionsfunktionen verarbeiten Inhalte der Kursseite</li>
+</ol>
+<h2 id="referenz">Referenz</h2>
+<h3 id="komplettes-modul">Komplettes Modul</h3>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<h2 id="hexscrapepy.scraper" class="doc doc-heading">
+            <code>hexscrapepy.scraper</code>
+
+
+</h2>
+
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="hexscrapepy.scraper.check_dependencies" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">check_dependencies</span><span class="p">()</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Check whether the core HIS workflow dependencies are importable.</p>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p><code>True</code> if the checked packages are available, otherwise <code>False</code>.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="hexscrapepy.scraper.clean_prefixes" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">clean_prefixes</span><span class="p">(</span><span class="n">df</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Remove repeated column-label prefixes from cell contents.</p>
+<p>Some HIS tables repeat the column label at the beginning of each cell.
+This helper strips those prefixes column by column.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>df</code>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>DataFrame to clean in place.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The same DataFrame instance with cleaned values.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="hexscrapepy.scraper.clean_titles" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">clean_titles</span><span class="p">(</span><span class="n">titles_series</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Normalize course titles for searching and resume matching.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>titles_series</code>
+            </td>
+            <td>
+                  <code><span title="pandas.Series">Series</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Series containing raw course titles.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="pandas.Series">Series</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Series with normalized title strings.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="hexscrapepy.scraper.fetch_base_data" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">fetch_base_data</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">export_path</span><span class="p">,</span> <span class="n">semester_name</span><span class="o">=</span><span class="s1">&#39;Sommersemester 2025&#39;</span><span class="p">,</span> <span class="n">headless</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Lädt die Übersicht aller Kurse für ein Semester herunter und speichert sie als CSV.</p>
+<p>Diese Funktion ist der typische Startpunkt: Sie lädt die Übersichtstabelle für ein Semester und speichert sie als Datei.</p>
+
+
+<details class="parameter" open>
+  <summary>Parameter</summary>
+  <p>url (str): Start-URL der Kursübersicht.
+export_path (str): Speicherort für die CSV-Datei.
+semester_name (str): Name des Semesters.
+headless (bool): Unsichtbarer Browser?</p>
+</details>
+
+<details class="rückgabe" open>
+  <summary>Rückgabe</summary>
+  <p>pd.DataFrame: Tabelle mit allen Kursen.</p>
+</details>
+
+<details class="beispiel" open>
+  <summary>Beispiel</summary>
+  <p>fetch_base_data(url, "daten.csv", "Sommersemester 2025")</p>
+</details>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="hexscrapepy.scraper.his_search_and_get_data" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">his_search_and_get_data</span><span class="p">(</span><span class="n">page</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Read the currently visible HISinOne result table across all pages.</p>
+<p>The page is expected to already show a course result list. The function
+follows the pagination links and concatenates all successfully parsed pages.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>page</code>
+            </td>
+            <td>
+                  <code><span title="playwright.sync_api.Page">Page</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Active Playwright page with visible search results.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Combined DataFrame of all parsed result pages, or <code>None</code> if no table</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>could be read successfully.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="hexscrapepy.scraper.his_select_semester" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">his_select_semester</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">semester_name</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Select a semester in the HISinOne dropdown without launching a search.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>page</code>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Active Playwright page.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>semester_name</code>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Visible semester label in the HISinOne UI.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="hexscrapepy.scraper.his_select_semester_base_data" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">his_select_semester_base_data</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">semester_name</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Select a semester and immediately load the result list for base data.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>page</code>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Active Playwright page.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>semester_name</code>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Visible semester label in the HISinOne UI.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="hexscrapepy.scraper.normalize_his_text" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">normalize_his_text</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Normalize a HISinOne text value for robust string comparison.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>value</code>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Arbitrary value originating from UI text or table content.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Lowercased, whitespace-normalized comparison string.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="hexscrapepy.scraper.sanitize_semester_name" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">sanitize_semester_name</span><span class="p">(</span><span class="n">semester_name</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Create a short, filesystem-safe token from a semester label.</p>
+<p>The function recognizes common German winter and summer semester patterns
+and converts them into compact identifiers such as <code>wise2024</code> or
+<code>sose2025</code>. If no known pattern is found, it falls back to a generic
+alphanumeric slug.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>semester_name</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Original semester label.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Short semester token suitable for filenames and folder names.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="hexscrapepy.scraper.scrape_all_sem" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">scrape_all_sem</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s1">&#39;https://zeus.uni-konstanz.de/hioserver/pages/startFlow.xhtml?_flowId=searchCourseNonStaff-flow&amp;_flowExecutionKey=e3s1&#39;</span><span class="p">,</span> <span class="n">export_path_template</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">file_name_template</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">output_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">headless</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">semesters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">title_col</span><span class="o">=</span><span class="s1">&#39;titel_der_veranstaltung&#39;</span><span class="p">,</span> <span class="n">number_col</span><span class="o">=</span><span class="s1">&#39;nummer&#39;</span><span class="p">,</span> <span class="n">restart_browser_every</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Run the complete HISinOne workflow for one or more semesters.</p>
+<p>For each semester the function first ensures that base course data exists
+as CSV and then enriches those rows with detail data scraped from the
+course pages. This is the main high-level entry point for HISinOne sources.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>url</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>HISinOne start URL.</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;https://zeus.uni-konstanz.de/hioserver/pages/startFlow.xhtml?_flowId=searchCourseNonStaff-flow&amp;_flowExecutionKey=e3s1&#39;</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>export_path_template</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Template for base CSV paths with <code>{sem}</code>.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>file_name_template</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Template for detail-data pickle paths with <code>{sem}</code>.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>output_dir</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Target directory for generated files.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>headless</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Whether Chromium should run without a visible window.</p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>semesters</code>
+            </td>
+            <td>
+                  <code><span title="list">list</span>[<span title="str">str</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Semester labels to scrape.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>title_col</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Column containing course titles in the base dataset.</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;titel_der_veranstaltung&#39;</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>number_col</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Column containing course numbers in the base dataset.</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;nummer&#39;</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>restart_browser_every</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Restart Chromium after this many processed courses.</p>
+              </div>
+            </td>
+            <td>
+                  <code>50</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="dict">dict</span>[<span title="str">str</span>, <span title="pandas.DataFrame">DataFrame</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Mapping from semester label to scraped DataFrame. Failed semesters may</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="dict">dict</span>[<span title="str">str</span>, <span title="pandas.DataFrame">DataFrame</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>have <code>None</code> as value.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="hexscrapepy.scraper.scrape_data_playwright" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">scrape_data_playwright</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">base_data</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">semester_name</span><span class="p">,</span> <span class="n">title_col</span><span class="o">=</span><span class="s1">&#39;titel_der_veranstaltung&#39;</span><span class="p">,</span> <span class="n">number_col</span><span class="o">=</span><span class="s1">&#39;nummer&#39;</span><span class="p">,</span> <span class="n">sleep_time</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">save_every</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">close_browser</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">headless</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">restart_browser_every</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Vollständige Funktion mit Resume-Logik, Browser-Restart und Error-Recovery.</p>
+<p>NEU: Browser wird automatisch alle <code>restart_browser_every</code> Kurse neu gestartet,
+um Memory-Leaks und Crashes zu vermeiden.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="hexscrapepy.scraper.scrape_inhalte_playwright" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">scrape_inhalte_playwright</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">css_inhalte_tab</span><span class="o">=</span><span class="s1">&#39;#detailViewData</span><span class="se">\\</span><span class="s1">:tabContainer</span><span class="se">\\</span><span class="s1">:term-planning-container</span><span class="se">\\</span><span class="s1">:tabs</span><span class="se">\\</span><span class="s1">:contentsTab&#39;</span><span class="p">,</span> <span class="n">timeout_ms</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">empty_timeout_ms</span><span class="o">=</span><span class="mi">1500</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Extract content blocks from the <code>Inhalte</code> tab of a detail page.</p>
+<p>Headings are normalized into column names. Repeated headings get numeric
+suffixes so that all extracted blocks can coexist in one row.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>page</code>
+            </td>
+            <td>
+                  <code><span title="playwright.sync_api.Page">Page</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Active Playwright page on a course detail view.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>css_inhalte_tab</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Selector of the content tab.</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;#detailViewData\\:tabContainer\\:term-planning-container\\:tabs\\:contentsTab&#39;</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>timeout_ms</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Maximum wait time for content blocks.</p>
+              </div>
+            </td>
+            <td>
+                  <code>10000</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>empty_timeout_ms</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Shorter timeout used when a page simply has no content.</p>
+              </div>
+            </td>
+            <td>
+                  <code>1500</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Single-row DataFrame with extracted text blocks, or an empty DataFrame.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="hexscrapepy.scraper.scrape_module_studiengaenge_playwright" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">scrape_module_studiengaenge_playwright</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">timeout_ms</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Extract assigned modules and degree programs from a detail page.</p>
+<p>The two result tables are preserved as nested DataFrames inside a single
+output row so that downstream code can keep their tabular structure.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>page</code>
+            </td>
+            <td>
+                  <code><span title="playwright.sync_api.Page">Page</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Active Playwright page on a course detail view.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>timeout_ms</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Reserved timeout budget for the extraction.</p>
+              </div>
+            </td>
+            <td>
+                  <code>10000</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Single-row DataFrame containing nested module and degree-program tables.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="hexscrapepy.scraper.scrape_termine" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">scrape_termine</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">root</span><span class="o">=</span><span class="s1">&#39;#detailViewData</span><span class="se">\\</span><span class="s1">:tabContainer</span><span class="se">\\</span><span class="s1">:term-planning-container</span><span class="se">\\</span><span class="s1">:parallelGroupsTab&#39;</span><span class="p">,</span> <span class="n">timeout_ms</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Extract the schedule block from a HISinOne course detail page.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>page</code>
+            </td>
+            <td>
+                  <code><span title="playwright.sync_api.Page">Page</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Active Playwright page on a detail view.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>root</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>CSS selector of the schedule container.</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;#detailViewData\\:tabContainer\\:term-planning-container\\:parallelGroupsTab&#39;</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>timeout_ms</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Maximum wait time for the schedule block.</p>
+              </div>
+            </td>
+            <td>
+                  <code>10000</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Single-row DataFrame with label-value pairs from the schedule section.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="hexscrapepy.scraper.start_his_session" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">start_his_session</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headless</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Start a Playwright browser session and open a HISinOne page.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>url</code>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Target HISinOne URL.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>headless</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Whether Chromium should run headless.</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Tuple <code>(playwright, browser, page)</code> for subsequent interactions.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div><h3 id="offentliche-paket-api">Öffentliche Paket-API</h3>
+<p>Diese API wird über <code>hexscrapepy</code> direkt exportiert:</p>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<h2 id="hexscrapepy" class="doc doc-heading">
+            <code>hexscrapepy</code>
+
+
+</h2>
+
+    <div class="doc doc-contents first">
+
+        <p>HEXscrapePy package.</p>
+<p>Die öffentliche API wird per Lazy-Import bereitgestellt. Dadurch bleibt ein
+einfaches <code>import hexscrapepy</code> leichtgewichtig und zieht optionale schwerere
+Abhängigkeiten wie Playwright erst dann nach, wenn eine entsprechende Funktion
+wirklich genutzt wird.</p>
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
