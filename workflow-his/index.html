@@ -133,10 +133,6 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#praktische-empfehlung" class="nav-link">Praktische Empfehlung</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
               </ul>
             </li>
         </ul>
@@ -145,17 +141,14 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="hisinone-workflow">HISinOne-Workflow</h1>
-<p>Diese Seite beschreibt den typischen Ablauf für HISinOne- oder HIS-basierte
+<p>Diese Seite beschreibt den typischen Scraping-Prozess für HISinOne-
 Vorlesungsverzeichnisse.</p>
 <h2 id="grundidee">Grundidee</h2>
 <p>Der HISinOne-Teil von <code>HEXscrapePy</code> arbeitet in zwei Stufen:</p>
 <ol>
-<li>Zuerst wird die Kursübersicht eines Semesters geladen.</li>
-<li>Danach werden die Detailseiten der einzelnen Veranstaltungen geöffnet und
-   weiter ausgelesen.</li>
+<li>In einem ersten Schritt werden die Basedaten eines Semesters geladen</li>
+<li>Anschließend werden auf der Basis der Basedaten (Titel, Kurs-ID) die Kursdaten ausgelesen.</li>
 </ol>
-<p>Die Basisdaten sind also vor allem die Trefferliste eines Semesters. Die
-eigentlichen Zusatzinformationen kommen anschließend aus den Kursdetailseiten.</p>
 <h2 id="wichtigste-einstiegsfunktionen">Wichtigste Einstiegsfunktionen</h2>
 <ul>
 <li><code>his_scrape_all_semesters()</code>: führt den kompletten HISinOne-Lauf für ein oder mehrere
@@ -213,16 +206,7 @@ werden unter anderem diese Bereiche ausgelesen:</p>
   fortgesetzt werden können.</li>
 <li>Für lange Läufe gibt es automatische Browser-Neustarts, um Stabilitäts- und
   Speicherprobleme besser abzufangen.</li>
-</ul>
-<h2 id="praktische-empfehlung">Praktische Empfehlung</h2>
-<p>Für produktive Läufe ist meist diese Reihenfolge am sinnvollsten:</p>
-<ol>
-<li><code>his_fetch_base_data()</code></li>
-<li>die erzeugte Basisdatei kurz prüfen</li>
-<li><code>his_scrape_detail_data_playwright()</code> für die Detaildaten ausführen</li>
-<li>optional <code>his_scrape_all_semesters()</code> verwenden, wenn der gesamte Ablauf in einem
-   Wrapper laufen soll</li>
-</ol></div>
+</ul></div>
             </div>
         </div>
 

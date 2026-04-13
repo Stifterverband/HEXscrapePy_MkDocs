@@ -125,11 +125,7 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#hexscrapepy.scraper" class="nav-link">scraper</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#hexscrapepy" class="nav-link">hexscrapepy</a>
+            <li class="nav-item" data-bs-level="2"><a href="#hexscrapepy.his_scraper" class="nav-link">his_scraper</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -141,7 +137,7 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="hisinone-funktionen">HISinOne-Funktionen</h1>
-<p>Diese Seite beschreibt die Funktionen aus <code>hexscrapepy.scraper</code>. Der Fokus
+<p>Diese Seite beschreibt die Funktionen aus <code>hexscrapepy.his_scraper</code>. Der Fokus
 liegt auf browsergesteuertem Scraping in HISinOne: erst Basisdaten laden, dann
 pro Veranstaltung die Detailseite öffnen und weiter auslesen.</p>
 <h2 id="rollen-der-funktionen">Rollen der Funktionen</h2>
@@ -276,8 +272,8 @@ pro Veranstaltung die Detailseite öffnen und weiter auslesen.</p>
 
 
 
-<h2 id="hexscrapepy.scraper" class="doc doc-heading">
-            <code>hexscrapepy.scraper</code>
+<h2 id="hexscrapepy.his_scraper" class="doc doc-heading">
+            <code>hexscrapepy.his_scraper</code>
 
 
 </h2>
@@ -307,7 +303,7 @@ pro Veranstaltung die Detailseite öffnen und weiter auslesen.</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="hexscrapepy.scraper.his_check_dependencies" class="doc doc-heading">
+<h3 id="hexscrapepy.his_scraper.his_check_dependencies" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">his_check_dependencies</span><span class="p">()</span></code>
 
 </h3>
@@ -347,7 +343,7 @@ pro Veranstaltung die Detailseite öffnen und weiter auslesen.</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="hexscrapepy.scraper.his_clean_table_prefixes" class="doc doc-heading">
+<h3 id="hexscrapepy.his_scraper.his_clean_table_prefixes" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">his_clean_table_prefixes</span><span class="p">(</span><span class="n">df</span><span class="p">)</span></code>
 
 </h3>
@@ -419,7 +415,7 @@ Diese Hilfsfunktion entfernt solche Präfixe spaltenweise.</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="hexscrapepy.scraper.his_fetch_base_data" class="doc doc-heading">
+<h3 id="hexscrapepy.his_scraper.his_fetch_base_data" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">his_fetch_base_data</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">export_path</span><span class="p">,</span> <span class="n">semester_name</span><span class="o">=</span><span class="s1">&#39;Sommersemester 2025&#39;</span><span class="p">,</span> <span class="n">headless</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
 
 </h3>
@@ -540,7 +536,7 @@ erst die Basisdaten laden, danach optional die Detailseiten nachziehen.</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="hexscrapepy.scraper.his_normalize_titles" class="doc doc-heading">
+<h3 id="hexscrapepy.his_scraper.his_normalize_titles" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">his_normalize_titles</span><span class="p">(</span><span class="n">titles_series</span><span class="p">)</span></code>
 
 </h3>
@@ -612,7 +608,7 @@ erst die Basisdaten laden, danach optional die Detailseiten nachziehen.</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="hexscrapepy.scraper.his_sanitize_semester_name" class="doc doc-heading">
+<h3 id="hexscrapepy.his_scraper.his_sanitize_semester_name" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">his_sanitize_semester_name</span><span class="p">(</span><span class="n">semester_name</span><span class="p">)</span></code>
 
 </h3>
@@ -687,7 +683,7 @@ passt, wird ein allgemeiner alphanumerischer Fallback erzeugt.</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="hexscrapepy.scraper.his_scrape_all_semesters" class="doc doc-heading">
+<h3 id="hexscrapepy.his_scraper.his_scrape_all_semesters" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">his_scrape_all_semesters</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s1">&#39;https://zeus.uni-konstanz.de/hioserver/pages/startFlow.xhtml?_flowId=searchCourseNonStaff-flow&amp;_flowExecutionKey=e3s1&#39;</span><span class="p">,</span> <span class="n">export_path_template</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">file_name_template</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">output_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">headless</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">semesters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">title_col</span><span class="o">=</span><span class="s1">&#39;titel_der_veranstaltung&#39;</span><span class="p">,</span> <span class="n">number_col</span><span class="o">=</span><span class="s1">&#39;nummer&#39;</span><span class="p">,</span> <span class="n">restart_browser_every</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span></code>
 
 </h3>
@@ -900,7 +896,7 @@ geöffnet und um zusätzliche Informationen ergänzt.</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="hexscrapepy.scraper.his_scrape_detail_data_playwright" class="doc doc-heading">
+<h3 id="hexscrapepy.his_scraper.his_scrape_detail_data_playwright" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">his_scrape_detail_data_playwright</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">base_data</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">semester_name</span><span class="p">,</span> <span class="n">title_col</span><span class="o">=</span><span class="s1">&#39;titel_der_veranstaltung&#39;</span><span class="p">,</span> <span class="n">number_col</span><span class="o">=</span><span class="s1">&#39;nummer&#39;</span><span class="p">,</span> <span class="n">sleep_time</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">save_every</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">close_browser</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">headless</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">restart_browser_every</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span></code>
 
 </h3>
@@ -1146,7 +1142,7 @@ Browser-Neustarts sind bereits enthalten.</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="hexscrapepy.scraper.his_scrape_inhalte_playwright" class="doc doc-heading">
+<h3 id="hexscrapepy.his_scraper.his_scrape_inhalte_playwright" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">his_scrape_inhalte_playwright</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">css_inhalte_tab</span><span class="o">=</span><span class="s1">&#39;#detailViewData</span><span class="se">\\</span><span class="s1">:tabContainer</span><span class="se">\\</span><span class="s1">:term-planning-container</span><span class="se">\\</span><span class="s1">:tabs</span><span class="se">\\</span><span class="s1">:contentsTab&#39;</span><span class="p">,</span> <span class="n">timeout_ms</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">empty_timeout_ms</span><span class="o">=</span><span class="mi">1500</span><span class="p">)</span></code>
 
 </h3>
@@ -1279,7 +1275,7 @@ gemeinsamen Ergebniszeile gespeichert werden können.</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="hexscrapepy.scraper.his_scrape_module_studiengaenge_playwright" class="doc doc-heading">
+<h3 id="hexscrapepy.his_scraper.his_scrape_module_studiengaenge_playwright" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">his_scrape_module_studiengaenge_playwright</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">timeout_ms</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span></code>
 
 </h3>
@@ -1369,7 +1365,7 @@ Ergebniszeile abgelegt, damit ihre Tabellenstruktur erhalten bleibt.</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="hexscrapepy.scraper.his_scrape_termine" class="doc doc-heading">
+<h3 id="hexscrapepy.his_scraper.his_scrape_termine" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">his_scrape_termine</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">root</span><span class="o">=</span><span class="s1">&#39;#detailViewData</span><span class="se">\\</span><span class="s1">:tabContainer</span><span class="se">\\</span><span class="s1">:term-planning-container</span><span class="se">\\</span><span class="s1">:parallelGroupsTab&#39;</span><span class="p">,</span> <span class="n">timeout_ms</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span></code>
 
 </h3>
@@ -1473,7 +1469,7 @@ Ergebniszeile abgelegt, damit ihre Tabellenstruktur erhalten bleibt.</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="hexscrapepy.scraper.his_search_and_get_data" class="doc doc-heading">
+<h3 id="hexscrapepy.his_scraper.his_search_and_get_data" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">his_search_and_get_data</span><span class="p">(</span><span class="n">page</span><span class="p">)</span></code>
 
 </h3>
@@ -1556,7 +1552,7 @@ gemeinsamen DataFrame zusammen.</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="hexscrapepy.scraper.his_select_semester" class="doc doc-heading">
+<h3 id="hexscrapepy.his_scraper.his_select_semester" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">his_select_semester</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">semester_name</span><span class="p">)</span></code>
 
 </h3>
@@ -1619,7 +1615,7 @@ gemeinsamen DataFrame zusammen.</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="hexscrapepy.scraper.his_select_semester_base_data" class="doc doc-heading">
+<h3 id="hexscrapepy.his_scraper.his_select_semester_base_data" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">his_select_semester_base_data</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">semester_name</span><span class="p">)</span></code>
 
 </h3>
@@ -1682,7 +1678,7 @@ gemeinsamen DataFrame zusammen.</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="hexscrapepy.scraper.his_start_session" class="doc doc-heading">
+<h3 id="hexscrapepy.his_scraper.his_start_session" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">his_start_session</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headless</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
 
 </h3>
@@ -1768,7 +1764,7 @@ gemeinsamen DataFrame zusammen.</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="hexscrapepy.scraper.normalize_his_text" class="doc doc-heading">
+<h3 id="hexscrapepy.his_scraper.normalize_his_text" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">normalize_his_text</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></code>
 
 </h3>
@@ -1835,54 +1831,6 @@ gemeinsamen DataFrame zusammen.</p>
     </div>
 
 </div>
-
-
-
-  </div>
-
-    </div>
-
-</div><h3 id="offentliche-paket-api">Öffentliche Paket-API</h3>
-<p>Diese API wird über <code>hexscrapepy</code> direkt exportiert:</p>
-
-
-<div class="doc doc-object doc-module">
-
-
-
-<h2 id="hexscrapepy" class="doc doc-heading">
-            <code>hexscrapepy</code>
-
-
-</h2>
-
-    <div class="doc doc-contents first">
-
-        <p>HEXscrapePy package.</p>
-<p>Die öffentliche API wird per Lazy-Import bereitgestellt. Dadurch bleibt ein
-einfaches <code>import hexscrapepy</code> leichtgewichtig und zieht optionale schwerere
-Abhängigkeiten wie Playwright erst dann nach, wenn eine entsprechende Funktion
-wirklich genutzt wird.</p>
-
-
-
-
-
-
-
-
-
-
-<div class="doc doc-children">
-
-
-
-
-
-
-
-
-
 
 
 
