@@ -112,7 +112,7 @@
             
             <li class="nav-item" data-bs-level="1"><a href="#api-uberblick" class="nav-link">API-Überblick</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#offentliche-einstiegspunkte" class="nav-link">Öffentliche Einstiegspunkte</a>
+            <li class="nav-item" data-bs-level="2"><a href="#die-wichtigsten-einstiegspunkte" class="nav-link">Die wichtigsten Einstiegspunkte</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -120,7 +120,11 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#transparenzhinweis" class="nav-link">Transparenzhinweis</a>
+            <li class="nav-item" data-bs-level="2"><a href="#wie-die-detailseiten-aufgebaut-sind" class="nav-link">Wie die Detailseiten aufgebaut sind</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#nachster-schritt" class="nav-link">Nächster Schritt</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -132,73 +136,78 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="api-uberblick">API-Überblick</h1>
-<p>Diese Seite ordnet die Funktionen von <code>HEXscrapePy</code> fachlich ein. Die vollständige Referenz ist anschließend auf die HISinOne- und LSF-Seiten aufgeteilt.</p>
-<h2 id="offentliche-einstiegspunkte">Öffentliche Einstiegspunkte</h2>
-<p>Diese Funktionen sind für die normale Nutzung des Pakets besonders relevant:</p>
+<p>Diese Seite ordnet die Funktionen von <code>HEXscrapePy</code> fachlich ein. Die
+vollständige Referenz mit Signaturen und Docstrings findest du auf den
+separaten Seiten für HISinOne und LSF.</p>
+<h2 id="die-wichtigsten-einstiegspunkte">Die wichtigsten Einstiegspunkte</h2>
+<p>Für die normale Nutzung des Pakets sind vor allem diese Funktionen relevant:</p>
 <table>
 <thead>
 <tr>
 <th>Funktion</th>
 <th>Bereich</th>
-<th>Zweck</th>
+<th>Wofür sie gedacht ist</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>scrape_all_sem</code></td>
 <td>HISinOne</td>
-<td>kompletter Semesterlauf inklusive Basis- und Detaildaten</td>
+<td>kompletter HISinOne-Lauf über ein oder mehrere Semester</td>
 </tr>
 <tr>
 <td><code>fetch_base_data</code></td>
 <td>HISinOne</td>
-<td>lädt die Kursübersicht eines Semesters</td>
+<td>lädt nur die Kursübersicht eines Semesters</td>
 </tr>
 <tr>
 <td><code>scrape_base_data_lsf</code></td>
 <td>LSF</td>
-<td>erzeugt die Basisdaten eines oder mehrerer Semester</td>
+<td>erstellt die Veranstaltungsliste eines oder mehrerer Semester</td>
 </tr>
 <tr>
 <td><code>scrape_lsf_veranstaltungen</code></td>
 <td>LSF</td>
-<td>ergänzt Detailinformationen zu Veranstaltungs-URLs</td>
+<td>ergänzt Detaildaten zu vorhandenen Veranstaltungs-URLs</td>
 </tr>
 <tr>
 <td><code>scrape_lsf_all_semesters</code></td>
 <td>LSF</td>
-<td>kompletter End-to-End-Lauf pro Semester</td>
+<td>führt den kompletten LSF-Workflow pro Semester aus</td>
 </tr>
 </tbody>
 </table>
 <h2 id="funktionsgruppen">Funktionsgruppen</h2>
-<h3 id="1-orchestrierungsfunktionen">1. Orchestrierungsfunktionen</h3>
-<p>Diese Funktionen koordinieren komplette Teilabläufe oder ganze Pipelines:</p>
+<h3 id="1-orchestrierung">1. Orchestrierung</h3>
+<p>Diese Funktionen steuern ganze Abläufe statt nur einzelner Schritte:</p>
 <ul>
 <li><code>scrape_all_sem</code></li>
 <li><code>scrape_base_data_lsf</code></li>
 <li><code>scrape_lsf_veranstaltungen</code></li>
 <li><code>scrape_lsf_all_semesters</code></li>
 </ul>
-<h3 id="2-navigations-und-suchfunktionen">2. Navigations- und Suchfunktionen</h3>
-<p>Diese Funktionen bewegen sich durch Oberflächen, wählen Semester aus oder öffnen Treffer:</p>
+<h3 id="2-navigation-und-suche">2. Navigation und Suche</h3>
+<p>Diese Funktionen bewegen sich durch Oberflächen, setzen Semester oder öffnen
+Trefferlisten:</p>
 <ul>
 <li><code>start_his_session</code></li>
 <li><code>his_select_semester_base_data</code></li>
 <li><code>his_select_semester</code></li>
 <li><code>select_semester</code></li>
 </ul>
-<h3 id="3-extraktionsfunktionen">3. Extraktionsfunktionen</h3>
+<h3 id="3-extraktion">3. Extraktion</h3>
 <p>Diese Funktionen lesen konkrete Inhalte aus Listen- oder Detailseiten:</p>
 <ul>
 <li><code>his_search_and_get_data</code></li>
 <li><code>scrape_termine</code></li>
 <li><code>scrape_inhalte_playwright</code></li>
 <li><code>scrape_module_studiengaenge_playwright</code></li>
-<li><code>extract_*_lsf</code>-Funktionen</li>
+<li>die <code>extract_*_lsf</code>-Funktionen für Titel, Grunddaten, Termine, Personen,
+  Module, Studiengänge und weitere Angaben</li>
 </ul>
 <h3 id="4-hilfsfunktionen">4. Hilfsfunktionen</h3>
-<p>Diese Funktionen normalisieren Texte, Dateinamen oder interne Zustände:</p>
+<p>Diese Funktionen kümmern sich um Normalisierung, Vergleichbarkeit oder
+Zwischenspeicherung:</p>
 <ul>
 <li><code>sanitize_semester_name</code></li>
 <li><code>clean_titles</code></li>
@@ -206,12 +215,20 @@
 <li><code>clean_text</code></li>
 <li><code>normalize_url</code></li>
 </ul>
-<h2 id="transparenzhinweis">Transparenzhinweis</h2>
-<p>Nicht jede technisch vorhandene Funktion ist als stabile High-Level-API gedacht. In den Detailseiten wird deshalb unterschieden zwischen:</p>
+<h2 id="wie-die-detailseiten-aufgebaut-sind">Wie die Detailseiten aufgebaut sind</h2>
+<p>Auf den Referenzseiten wird zwischen drei Rollen unterschieden:</p>
 <ul>
-<li><code>Öffentlich empfohlen</code>: gut geeignet für direkte Nutzung</li>
-<li><code>Modular nutzbar</code>: fachlich sinnvoll, aber eher Teil eines Teilworkflows</li>
-<li><code>Intern/technisch</code>: vor allem zur internen Ablaufsteuerung oder Parser-Infrastruktur</li>
+<li><code>Öffentlich empfohlen</code>: gute Einstiegspunkte für die direkte Nutzung</li>
+<li><code>Modular nutzbar</code>: fachlich sinnvoll, wenn du nur Teilstücke des Workflows
+  brauchst</li>
+<li><code>Intern/technisch</code>: eher Hilfs- und Infrastrukturcode, der vor allem intern
+  vom Paket selbst genutzt wird</li>
+</ul>
+<h2 id="nachster-schritt">Nächster Schritt</h2>
+<p>Wenn du gezielt eine Funktion nachschlagen willst, gehe direkt weiter zu:</p>
+<ul>
+<li><a href="../api-his/">HISinOne-Funktionen</a></li>
+<li><a href="../api-lsf/">LSF-Funktionen</a></li>
 </ul></div>
             </div>
         </div>

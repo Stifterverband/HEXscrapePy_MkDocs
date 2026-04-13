@@ -140,7 +140,9 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="lsf-funktionen">LSF-Funktionen</h1>
-<p>Diese Seite beschreibt die Funktionen aus <code>hexscrapepy.lsf_scraper</code>.</p>
+<p>Diese Seite beschreibt die Funktionen aus <code>hexscrapepy.lsf_scraper</code>. Der
+Schwerpunkt liegt auf LSF-Systemen: zuerst eine Veranstaltungsliste aufbauen,
+dann die Detailseiten laden und in einzelne Inhaltsblöcke zerlegen.</p>
 <h2 id="rollen-der-funktionen">Rollen der Funktionen</h2>
 <h3 id="offentlich-empfohlen">Öffentlich empfohlen</h3>
 <table>
@@ -155,17 +157,17 @@
 <tr>
 <td><code>scrape_base_data_lsf</code></td>
 <td>Basisdaten</td>
-<td>erhebt Veranstaltungslisten eines oder mehrerer Semester</td>
+<td>erstellt eine Veranstaltungsliste für ein oder mehrere Semester und schreibt sie als Basisdatei</td>
 </tr>
 <tr>
 <td><code>scrape_lsf_veranstaltungen</code></td>
 <td>Detaildaten</td>
-<td>ergänzt Detailinformationen zu vorhandenen <code>URL_Event</code>-Links</td>
+<td>lädt für vorhandene <code>URL_Event</code>-Links die Detailseiten und ergänzt die inhaltlichen Zusatzfelder</td>
 </tr>
 <tr>
 <td><code>scrape_lsf_all_semesters</code></td>
 <td>Wrapper</td>
-<td>führt den vollständigen LSF-Workflow pro Semester aus</td>
+<td>kombiniert Basislauf und Detail-Scraping zu einem kompletten LSF-Workflow pro Semester</td>
 </tr>
 </tbody>
 </table>
@@ -182,72 +184,72 @@
 <tr>
 <td><code>select_semester</code></td>
 <td>Navigation</td>
-<td>wechselt im LSF zum gewünschten Semester</td>
+<td>wechselt im LSF zum gewünschten Semester und öffnet das Vorlesungsverzeichnis</td>
 </tr>
 <tr>
 <td><code>extract_veranstaltungstitel_lsf</code></td>
 <td>Extraktion</td>
-<td>liest den sichtbaren Titel einer Veranstaltung</td>
+<td>liest den sichtbaren Veranstaltungstitel aus der Detailseite</td>
 </tr>
 <tr>
 <td><code>extract_grunddaten_lsf</code></td>
 <td>Extraktion</td>
-<td>liest strukturierte Grunddaten aus der Detailseite</td>
+<td>liest den Block <code>Grunddaten zur Veranstaltung</code> als strukturierte Felder aus</td>
 </tr>
 <tr>
 <td><code>extract_termine_lsf</code></td>
 <td>Extraktion</td>
-<td>liest Terminblöcke einer Veranstaltung</td>
+<td>liest alle Terminzeilen einer Veranstaltung in Tabellenform aus</td>
 </tr>
 <tr>
 <td><code>extract_dozenten_lsf</code></td>
 <td>Extraktion</td>
-<td>extrahiert Dozentinnen und Dozenten</td>
+<td>extrahiert die Tabelle der durchführenden Dozentinnen und Dozenten</td>
 </tr>
 <tr>
 <td><code>extract_zugeordnete_personen_lsf</code></td>
 <td>Extraktion</td>
-<td>extrahiert weitere zugeordnete Personen</td>
+<td>extrahiert weitere zugeordnete oder verantwortliche Personen als verschachtelte Tabelle</td>
 </tr>
 <tr>
 <td><code>extract_studiengaenge_lsf</code></td>
 <td>Extraktion</td>
-<td>extrahiert zugeordnete Studiengänge</td>
+<td>liest den Studiengangsblock als verschachtelte Tabelle aus</td>
 </tr>
 <tr>
 <td><code>extract_module_lsf</code></td>
 <td>Extraktion</td>
-<td>extrahiert zugeordnete Module</td>
+<td>liest den Modulblock als verschachtelte Tabelle aus</td>
 </tr>
 <tr>
 <td><code>extract_einrichtung_lsf</code></td>
 <td>Extraktion</td>
-<td>extrahiert Einrichtungen oder organisatorische Zuordnungen</td>
+<td>liest organisatorische Zuordnungen oder Einrichtungen aus</td>
 </tr>
 <tr>
 <td><code>extract_weitere_angaben_lsf</code></td>
 <td>Extraktion</td>
-<td>liest weitere Angaben als strukturierte Felder</td>
+<td>liest den Block <code>Weitere Angaben zur Veranstaltung</code> generisch als Felder aus</td>
 </tr>
 <tr>
 <td><code>extract_lerninhalt_lsf</code></td>
 <td>Extraktion</td>
-<td>zieht Lerninhalte aus den weiteren Angaben</td>
+<td>zieht das Feld <code>Lerninhalte</code> aus den weiteren Angaben heraus</td>
 </tr>
 <tr>
 <td><code>extract_kommentar_lsf</code></td>
 <td>Extraktion</td>
-<td>zieht Kommentare aus den weiteren Angaben</td>
+<td>zieht das Feld <code>Kommentar</code> aus den weiteren Angaben heraus</td>
 </tr>
 <tr>
 <td><code>fetch_lsf_course_html</code></td>
 <td>Abruf</td>
-<td>lädt die rohe HTML-Seite einer Veranstaltung</td>
+<td>lädt das rohe HTML einer LSF-Detailseite per HTTP</td>
 </tr>
 <tr>
 <td><code>fetch_lsf_course_html_expanded</code></td>
 <td>Abruf</td>
-<td>lädt die Seite mit aufgeklappten Toggle-Bereichen</td>
+<td>lädt die Detailseite mit vorher aufgeklappten Toggle-Bereichen über Playwright</td>
 </tr>
 </tbody>
 </table>
@@ -264,67 +266,71 @@
 <tr>
 <td><code>clean_text</code></td>
 <td>Helper</td>
-<td>normalisiert Freitext für Export und Parsing</td>
+<td>bereinigt Freitext und ersetzt leere Werte durch einen einheitlichen Platzhalter</td>
 </tr>
 <tr>
 <td><code>normalize_url</code></td>
 <td>Helper</td>
-<td>reduziert LSF-URLs auf stabile Vergleichswerte</td>
+<td>reduziert LSF-Navigations-URLs auf stabile Vergleichswerte für Duplikaterkennung</td>
 </tr>
 <tr>
 <td><code>_scrape_via_path</code></td>
 <td>Workflow</td>
-<td>interner Basislauf über die Baumstruktur</td>
+<td>interner Basislauf über die Baumstruktur des Vorlesungsverzeichnisses</td>
 </tr>
 <tr>
 <td><code>_scrape_via_search</code></td>
 <td>Workflow</td>
-<td>interner Basislauf über die Suchmaske</td>
+<td>interner Basislauf über die Suchmaske mit Pagination</td>
 </tr>
 <tr>
 <td><code>_find_event_tables</code></td>
 <td>Parser</td>
-<td>identifiziert Tabellen mit Veranstaltungslisten</td>
+<td>erkennt Tabellen, die tatsächlich Veranstaltungslisten enthalten</td>
 </tr>
 <tr>
 <td><code>_parse_event_table</code></td>
 <td>Parser</td>
-<td>liest einzelne Veranstaltungszeilen in Ergebnis-Dictionaries</td>
+<td>liest einzelne Veranstaltungszeilen in Ergebnis-Dictionaries ein</td>
 </tr>
 <tr>
 <td><code>_find_lsf_section_table</code></td>
 <td>Parser</td>
-<td>findet Bereichstabellen robust über mehrere Signale</td>
+<td>findet Bereichstabellen robust über <code>summary</code>-Texte oder Container-IDs</td>
 </tr>
 <tr>
 <td><code>_needs_expanded_lsf_fetch</code></td>
 <td>Steuerung</td>
-<td>entscheidet über Playwright-Fallback</td>
+<td>entscheidet, ob eine Detailseite noch einmal mit aufgeklappten Bereichen geladen werden sollte</td>
 </tr>
 <tr>
 <td><code>_load_lsf_results_json</code></td>
 <td>Resume</td>
-<td>lädt bestehende Zwischenergebnisse</td>
+<td>lädt vorhandene Detailergebnisse für Resume-Läufe</td>
 </tr>
 <tr>
 <td><code>_write_lsf_results_json</code></td>
 <td>Resume</td>
-<td>schreibt Zwischenergebnisse zurück</td>
+<td>schreibt Zwischenergebnisse als JSON-Datei zurück</td>
 </tr>
 <tr>
 <td><code>_build_lsf_detail_frame</code></td>
 <td>Merge</td>
-<td>reduziert Detaildaten auf mergefähige Spalten</td>
+<td>reduziert gescrapte Detaildaten auf die Spalten, die später sauber gemergt werden können</td>
 </tr>
 </tbody>
 </table>
 <h2 id="typischer-ablauf">Typischer Ablauf</h2>
 <p>Ein vollständiger LSF-Lauf sieht meist so aus:</p>
 <ol>
-<li><code>scrape_lsf_all_semesters()</code> als Wrapper</li>
-<li>intern <code>scrape_base_data_lsf()</code> für die Basisdaten</li>
-<li>anschließend <code>scrape_lsf_veranstaltungen()</code> für die Detailseiten</li>
-<li>einzelne <code>extract_*</code>-Parser lesen strukturierte Felder aus dem HTML</li>
+<li>Mit <code>scrape_lsf_all_semesters()</code> oder manuell mit <code>scrape_base_data_lsf()</code>
+   zunächst die Veranstaltungsliste eines Semesters aufbauen.</li>
+<li>Auf Basis der erzeugten <code>URL_Event</code>-Spalte die Detailseiten mit
+   <code>scrape_lsf_veranstaltungen()</code> abrufen.</li>
+<li>Innerhalb des Detail-Scrapings lesen die einzelnen <code>extract_*</code>-Funktionen
+   die jeweiligen Inhaltsblöcke aus dem HTML.</li>
+<li>Die Ergebnisse werden anschließend zu einem gemeinsamen DataFrame pro
+   Semester zusammengeführt.</li>
 </ol>
 <h2 id="referenz">Referenz</h2>
 <h3 id="komplettes-modul">Komplettes Modul</h3>

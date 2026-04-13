@@ -116,19 +116,19 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#empfohlener-einstieg" class="nav-link">Empfohlener Einstieg</a>
+            <li class="nav-item" data-bs-level="2"><a href="#womit-sollte-ich-anfangen" class="nav-link">Womit sollte ich anfangen?</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#typische-arbeitsweise" class="nav-link">Typische Arbeitsweise</a>
+            <li class="nav-item" data-bs-level="2"><a href="#zwei-typische-nutzungsweisen" class="nav-link">Zwei typische Nutzungsweisen</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#leitidee-der-api" class="nav-link">Leitidee der API</a>
+            <li class="nav-item" data-bs-level="2"><a href="#wie-die-api-aufgebaut-ist" class="nav-link">Wie die API aufgebaut ist</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#offentliche-einstiegspunkte" class="nav-link">Öffentliche Einstiegspunkte</a>
+            <li class="nav-item" data-bs-level="2"><a href="#wichtige-einstiegspunkte-der-offentlichen-api" class="nav-link">Wichtige Einstiegspunkte der öffentlichen API</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -142,58 +142,67 @@
 <h1 id="schnellstart">Schnellstart</h1>
 <p>Diese Dokumentation ist in drei Ebenen aufgebaut:</p>
 <ol>
-<li><code>Start</code>: Was das Paket grundsätzlich kann.</li>
-<li><code>Workflows</code>: Wie ein typischer Scraping-Lauf für HISinOne oder LSF aussieht.</li>
-<li><code>API</code>: Welche Funktionen es gibt und welche Aufgabe jede Funktion im Detail übernimmt.</li>
+<li><code>Start</code>: Was das Paket grundsätzlich macht.</li>
+<li><code>Workflows</code>: Wie ein kompletter Scraping-Lauf für HISinOne oder LSF
+   typischerweise abläuft.</li>
+<li><code>API</code>: Welche Funktionen es gibt und welche Aufgabe jede Funktion im Detail
+   übernimmt.</li>
 </ol>
 <h2 id="fur-wen-ist-hexscrapepy-gedacht">Für wen ist HEXscrapePy gedacht?</h2>
-<p><code>HEXscrapePy</code> ist ein Python-Paket zum automatisierten Abrufen von Lehrveranstaltungsdaten aus Hochschulsystemen. Im Repository gibt es aktuell zwei große Funktionsblöcke:</p>
+<p><code>HEXscrapePy</code> ist für alle gedacht, die Lehrveranstaltungsdaten aus
+Hochschulsystemen automatisiert weiterverarbeiten möchten, zum Beispiel für
+Analysen, Datenaufbereitung oder Tests einzelner Parser.</p>
+<p>Im Repository gibt es zwei große Funktionsbereiche:</p>
 <ul>
-<li><code>hexscrapepy.scraper</code> für HISinOne/HIS-Systeme mit browserbasiertem Scraping via Playwright</li>
-<li><code>hexscrapepy.lsf_scraper</code> für LSF-Systeme mit einer Mischung aus Browser-Navigation, HTML-Parsing und HTTP-Abruf</li>
+<li><code>hexscrapepy.scraper</code> für HISinOne- bzw. HIS-Systeme mit Playwright und
+  browsergesteuerten Abläufen</li>
+<li><code>hexscrapepy.lsf_scraper</code> für LSF-Systeme mit HTML-Parsing, HTTP-Abruf und
+  ergänzender Browser-Navigation</li>
 </ul>
-<h2 id="empfohlener-einstieg">Empfohlener Einstieg</h2>
-<p>Wenn du das Paket zum ersten Mal verwendest, starte nicht mit den niedrigsten Hilfsfunktionen, sondern mit den Wrappern:</p>
+<h2 id="womit-sollte-ich-anfangen">Womit sollte ich anfangen?</h2>
+<p>Wenn du das Paket zum ersten Mal verwendest, starte am besten nicht bei den
+kleinen Hilfsfunktionen, sondern bei den Wrappern:</p>
 <ul>
 <li>HISinOne: <code>scrape_all_sem()</code></li>
 <li>LSF: <code>scrape_lsf_all_semesters()</code></li>
 </ul>
-<p>Diese beiden Funktionen koordinieren den größten Teil des Workflows bereits selbst:</p>
+<p>Diese Funktionen übernehmen bereits einen großen Teil der Arbeit:</p>
 <ul>
-<li>Auswahl von Semestern</li>
-<li>Laden oder Erstellen von Basisdaten</li>
-<li>Detail-Scraping</li>
-<li>Zwischenspeicherung</li>
-<li>Ausgabe in Dateien</li>
+<li>Semester auswählen</li>
+<li>Basisdaten laden oder erzeugen</li>
+<li>Detailseiten nachziehen</li>
+<li>Zwischenergebnisse speichern</li>
+<li>Ausgabedateien schreiben</li>
 </ul>
-<h2 id="typische-arbeitsweise">Typische Arbeitsweise</h2>
-<p>Es gibt zwei sinnvolle Nutzungsmodi:</p>
-<h3 id="1-einfache-nutzung-uber-wrapper">1. Einfache Nutzung über Wrapper</h3>
-<p>Geeignet, wenn du komplette Semester oder komplette Hochschulen scrapen möchtest.</p>
-<h3 id="2-modulare-nutzung-uber-einzelfunktionen">2. Modulare Nutzung über Einzelfunktionen</h3>
-<p>Geeignet, wenn du:</p>
+<h2 id="zwei-typische-nutzungsweisen">Zwei typische Nutzungsweisen</h2>
+<h3 id="1-komplettlaufe-uber-wrapper">1. Komplettläufe über Wrapper</h3>
+<p>Das ist der einfachste Einstieg. Er ist sinnvoll, wenn du einen vollständigen
+Semesterlauf brauchst und möglichst wenig manuell zusammensetzen möchtest.</p>
+<h3 id="2-gezielte-nutzung-einzelner-funktionen">2. Gezielte Nutzung einzelner Funktionen</h3>
+<p>Das ist sinnvoll, wenn du:</p>
 <ul>
 <li>nur einen Teil des Workflows brauchst</li>
-<li>einzelne Parser testen willst</li>
+<li>einzelne Parser isoliert testen willst</li>
 <li>HTML oder Tabellen separat weiterverarbeiten möchtest</li>
 <li>Fehler im Ablauf gezielt debuggen willst</li>
 </ul>
-<h2 id="leitidee-der-api">Leitidee der API</h2>
+<h2 id="wie-die-api-aufgebaut-ist">Wie die API aufgebaut ist</h2>
 <p>Die Funktionen im Paket lassen sich grob in vier Gruppen einteilen:</p>
 <ul>
-<li>Orchestrierung: startet komplette End-to-End-Läufe</li>
-<li>Navigation und Suche: bewegt sich durch die Zielsysteme</li>
-<li>Extraktion: liest Tabellen, Textfelder und Metadaten aus</li>
-<li>Hilfsfunktionen: normalisiert Texte, Dateinamen oder Resume-Daten</li>
+<li>Orchestrierung: startet ganze End-to-End-Läufe</li>
+<li>Navigation und Suche: bewegt sich durch Oberflächen und Ergebnislisten</li>
+<li>Extraktion: liest Tabellen, Textblöcke und Metadaten aus</li>
+<li>Hilfsfunktionen: normalisiert Texte, Dateinamen oder Resume-Zustände</li>
 </ul>
-<p>In den API-Seiten ist deshalb jeweils angegeben:</p>
+<p>Auf den API-Seiten findest du deshalb zu jeder Funktion:</p>
 <ul>
-<li>wofür die Funktion gedacht ist</li>
-<li>in welchem Schritt des Workflows sie auftaucht</li>
-<li>ob sie eher öffentlich nutzbar oder intern/technisch ist</li>
+<li>ihre Aufgabe im Workflow</li>
+<li>ihren typischen Einsatzpunkt</li>
+<li>eine Einordnung als eher öffentlich nutzbar oder eher intern</li>
 </ul>
-<h2 id="offentliche-einstiegspunkte">Öffentliche Einstiegspunkte</h2>
-<p>Die öffentliche API wird über <code>hexscrapepy.__init__</code> bereitgestellt. Besonders relevant sind:</p>
+<h2 id="wichtige-einstiegspunkte-der-offentlichen-api">Wichtige Einstiegspunkte der öffentlichen API</h2>
+<p>Die öffentliche API wird über <code>hexscrapepy.__init__</code> exportiert. Besonders
+relevant für den Einstieg sind:</p>
 <ul>
 <li><code>scrape_all_sem</code></li>
 <li><code>fetch_base_data</code></li>
@@ -202,7 +211,8 @@
 <li><code>scrape_lsf_veranstaltungen</code></li>
 <li><code>scrape_lsf_all_semesters</code></li>
 </ul>
-<p>Wenn du nachvollziehen willst, was intern passiert, findest du die restlichen Helfer in den API-Seiten zu HISinOne und LSF.</p></div>
+<p>Wenn du genauer verstehen möchtest, was intern passiert, findest du die
+restlichen Helfer in den API-Seiten zu HISinOne und LSF.</p></div>
             </div>
         </div>
 

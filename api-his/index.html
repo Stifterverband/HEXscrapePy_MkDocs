@@ -140,7 +140,9 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="hisinone-funktionen">HISinOne-Funktionen</h1>
-<p>Diese Seite beschreibt die Funktionen aus <code>hexscrapepy.scraper</code>.</p>
+<p>Diese Seite beschreibt die Funktionen aus <code>hexscrapepy.scraper</code>. Der Fokus
+liegt auf browsergesteuertem Scraping in HISinOne: erst Basisdaten laden, dann
+pro Veranstaltung die Detailseite öffnen und weiter auslesen.</p>
 <h2 id="rollen-der-funktionen">Rollen der Funktionen</h2>
 <h3 id="offentlich-empfohlen">Öffentlich empfohlen</h3>
 <table>
@@ -155,22 +157,22 @@
 <tr>
 <td><code>scrape_all_sem</code></td>
 <td>Wrapper</td>
-<td>führt einen vollständigen HISinOne-Lauf über mehrere Semester aus</td>
+<td>führt den kompletten HISinOne-Workflow aus, also Basisdaten und Detaildaten für ein oder mehrere Semester</td>
 </tr>
 <tr>
 <td><code>fetch_base_data</code></td>
 <td>Basisdaten</td>
-<td>lädt die Veranstaltungsliste eines Semesters und speichert sie als CSV</td>
+<td>lädt die Trefferliste eines Semesters aus dem HIS und speichert sie als CSV-Datei</td>
 </tr>
 <tr>
 <td><code>scrape_data_playwright</code></td>
 <td>Detaildaten</td>
-<td>ergänzt Detailinformationen zu bereits bekannten Veranstaltungen</td>
+<td>öffnet für jede Veranstaltung die Detailseite und ergänzt Termine, Inhalte sowie Modul- und Studiengangsdaten</td>
 </tr>
 <tr>
 <td><code>start_his_session</code></td>
 <td>Session</td>
-<td>startet Browser, Context und Seite für HISinOne</td>
+<td>startet Playwright, öffnet Chromium und lädt die HISinOne-Startseite</td>
 </tr>
 </tbody>
 </table>
@@ -187,32 +189,32 @@
 <tr>
 <td><code>his_select_semester_base_data</code></td>
 <td>Navigation</td>
-<td>wählt ein Semester für den Basisdatenlauf aus</td>
+<td>wählt ein Semester aus und startet direkt die Suche für die Kursübersicht</td>
 </tr>
 <tr>
 <td><code>his_select_semester</code></td>
 <td>Navigation</td>
-<td>setzt das Semester für spätere Such- oder Detailschritte</td>
+<td>setzt das Semester in der Suchmaske, ohne sofort eine Suche auszulösen</td>
 </tr>
 <tr>
 <td><code>his_search_and_get_data</code></td>
 <td>Extraktion</td>
-<td>liest Trefferlisten seitenweise in DataFrames ein</td>
+<td>liest die sichtbare Ergebnistabelle über alle Trefferseiten hinweg in ein gemeinsames DataFrame ein</td>
 </tr>
 <tr>
 <td><code>scrape_termine</code></td>
 <td>Extraktion</td>
-<td>liest Termin-Informationen aus einer Detailseite</td>
+<td>liest den Terminblock einer HIS-Detailseite als Label-Wert-Paare aus</td>
 </tr>
 <tr>
 <td><code>scrape_inhalte_playwright</code></td>
 <td>Extraktion</td>
-<td>liest Inhalte aus dem Tab <code>Inhalte</code></td>
+<td>liest die Textblöcke aus dem Tab <code>Inhalte</code> und macht daraus Spalten einer Ergebniszeile</td>
 </tr>
 <tr>
 <td><code>scrape_module_studiengaenge_playwright</code></td>
 <td>Extraktion</td>
-<td>liest zugeordnete Module und Studiengänge</td>
+<td>liest die Tabellen zu Modulen und Studiengängen aus der Detailseite aus</td>
 </tr>
 </tbody>
 </table>
@@ -229,37 +231,41 @@
 <tr>
 <td><code>sanitize_semester_name</code></td>
 <td>Helper</td>
-<td>erzeugt robuste Kurzkennungen für Semester</td>
+<td>wandelt Semesternamen in kurze, dateitaugliche Kennungen wie <code>wise2024</code> um</td>
 </tr>
 <tr>
 <td><code>check_dependencies</code></td>
 <td>Helper</td>
-<td>prüft, ob zentrale Python-Abhängigkeiten vorhanden sind</td>
+<td>prüft, ob die wichtigsten Python-Abhängigkeiten für den HIS-Lauf importierbar sind</td>
 </tr>
 <tr>
 <td><code>clean_prefixes</code></td>
 <td>Helper</td>
-<td>entfernt störende Vorsilben aus Tabellenzellen</td>
+<td>entfernt wiederholte Spaltenüberschriften aus Tabellenzellen</td>
 </tr>
 <tr>
 <td><code>clean_titles</code></td>
 <td>Helper</td>
-<td>normalisiert Titel für Suche und Resume-Abgleich</td>
+<td>vereinheitlicht Veranstaltungstitel für Suche und Resume-Abgleich</td>
 </tr>
 <tr>
 <td><code>normalize_his_text</code></td>
 <td>Helper</td>
-<td>macht HIS-Texte vergleichbar</td>
+<td>normalisiert Texte aus dem HIS für robuste Stringvergleiche</td>
 </tr>
 </tbody>
 </table>
 <h2 id="typischer-ablauf">Typischer Ablauf</h2>
 <p>Ein vollständiger HISinOne-Lauf sieht meist so aus:</p>
 <ol>
-<li><code>scrape_all_sem()</code> oder manuell <code>fetch_base_data()</code></li>
-<li>Basisdatei prüfen</li>
-<li><code>scrape_data_playwright()</code> für Detaildaten</li>
-<li>interne Extraktionsfunktionen verarbeiten Inhalte der Kursseite</li>
+<li>Mit <code>fetch_base_data()</code> oder direkt mit <code>scrape_all_sem()</code> die
+   Veranstaltungsliste eines Semesters erzeugen.</li>
+<li>Die Basisdatei kurz prüfen, zum Beispiel auf Spaltennamen und sichtbare
+   Trefferqualität.</li>
+<li>Mit <code>scrape_data_playwright()</code> die Detailseiten der gefundenen
+   Veranstaltungen nachziehen.</li>
+<li>Innerhalb dieses Detail-Scrapings verarbeiten die kleineren
+   Extraktionsfunktionen die einzelnen Bereiche der Kursseite.</li>
 </ol>
 <h2 id="referenz">Referenz</h2>
 <h3 id="komplettes-modul">Komplettes Modul</h3>

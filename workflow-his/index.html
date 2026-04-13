@@ -112,7 +112,7 @@
             
             <li class="nav-item" data-bs-level="1"><a href="#hisinone-workflow" class="nav-link">HISinOne-Workflow</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#zielbild" class="nav-link">Zielbild</a>
+            <li class="nav-item" data-bs-level="2"><a href="#grundidee" class="nav-link">Grundidee</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -144,59 +144,83 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="hisinone-workflow">HISinOne-Workflow</h1>
-<p>Diese Seite beschreibt den typischen Ablauf für das Scraping von HISinOne- oder HIS-basierten Vorlesungsverzeichnissen.</p>
-<h2 id="zielbild">Zielbild</h2>
+<p>Diese Seite beschreibt den typischen Ablauf für HISinOne- oder HIS-basierte
+Vorlesungsverzeichnisse.</p>
+<h2 id="grundidee">Grundidee</h2>
 <p>Der HISinOne-Teil von <code>HEXscrapePy</code> arbeitet in zwei Stufen:</p>
 <ol>
-<li>Basisdaten laden</li>
-<li>Detaildaten für einzelne Veranstaltungen nachziehen</li>
+<li>Zuerst wird die Kursübersicht eines Semesters geladen.</li>
+<li>Danach werden die Detailseiten der einzelnen Veranstaltungen geöffnet und
+   weiter ausgelesen.</li>
 </ol>
-<p>Die Basisdaten sind vor allem die Veranstaltungsliste eines Semesters. Die Detaildaten kommen danach aus den einzelnen Kursseiten.</p>
+<p>Die Basisdaten sind also vor allem die Trefferliste eines Semesters. Die
+eigentlichen Zusatzinformationen kommen anschließend aus den Kursdetailseiten.</p>
 <h2 id="wichtigste-einstiegsfunktionen">Wichtigste Einstiegsfunktionen</h2>
 <ul>
-<li><code>scrape_all_sem()</code>: kompletter Lauf über mehrere Semester</li>
-<li><code>fetch_base_data()</code>: lädt zuerst die reine Kursübersicht eines Semesters</li>
-<li><code>scrape_data_playwright()</code>: ergänzt Detaildaten zu den einzelnen Kursen</li>
+<li><code>scrape_all_sem()</code>: führt den kompletten HISinOne-Lauf für ein oder mehrere
+  Semester aus</li>
+<li><code>fetch_base_data()</code>: lädt die Kursübersicht eines einzelnen Semesters und
+  speichert sie als CSV</li>
+<li><code>scrape_data_playwright()</code>: nutzt vorhandene Basisdaten und ergänzt
+  Detailinformationen zu jeder Veranstaltung</li>
 </ul>
 <h2 id="ablauf-im-detail">Ablauf im Detail</h2>
 <h3 id="1-browser-session-starten">1. Browser-Session starten</h3>
-<p><code>start_his_session()</code> startet Playwright, öffnet Chromium und lädt die Start-URL des HIS-Systems.</p>
+<p><code>start_his_session()</code> startet Playwright, öffnet Chromium und lädt die
+HISinOne-Startseite. Diese Funktion ist die Grundlage für alle weiteren
+Interaktionen im Browser.</p>
 <h3 id="2-semester-auswahlen">2. Semester auswählen</h3>
-<p>Je nach Schritt im Workflow wird eines von zwei Helfern verwendet:</p>
+<p>Je nach Schritt im Workflow werden zwei unterschiedliche Helfer verwendet:</p>
 <ul>
-<li><code>his_select_semester_base_data()</code> für den Lauf, der die Kursübersicht lädt</li>
-<li><code>his_select_semester()</code> für spätere Such- und Detailabläufe</li>
+<li><code>his_select_semester_base_data()</code> wählt ein Semester aus und startet direkt
+  die Suche für die Kursübersicht</li>
+<li><code>his_select_semester()</code> setzt nur das Semester, ohne sofort eine Suche
+  auszulösen</li>
 </ul>
 <h3 id="3-kursubersicht-einsammeln">3. Kursübersicht einsammeln</h3>
-<p><code>his_search_and_get_data()</code> klickt sich durch die Trefferseiten und liest die HTML-Tabellen in ein DataFrame ein.</p>
-<h3 id="4-detailseiten-pro-kurs-aufrufen">4. Detailseiten pro Kurs aufrufen</h3>
-<p><code>scrape_data_playwright()</code> nutzt die Basisdaten, sucht einzelne Veranstaltungen und ergänzt Felder wie:</p>
+<p><code>his_search_and_get_data()</code> liest die aktuell sichtbare Ergebnistabelle aus,
+folgt der Pagination und baut daraus ein gemeinsames DataFrame über alle
+Trefferseiten hinweg.</p>
+<h3 id="4-detailseiten-pro-kurs-auslesen">4. Detailseiten pro Kurs auslesen</h3>
+<p><code>scrape_data_playwright()</code> nimmt die Basistabelle als Ausgangspunkt, sucht jede
+Veranstaltung erneut im HIS und öffnet dann die passende Detailseite. Dort
+werden unter anderem diese Bereiche ausgelesen:</p>
 <ul>
-<li>Termine</li>
-<li>Inhalte</li>
-<li>Module und Studiengänge</li>
-<li>Metadaten zum Scraping-Zeitpunkt</li>
+<li>Termine über <code>scrape_termine()</code></li>
+<li>Inhalte aus dem Tab <code>Inhalte</code> über <code>scrape_inhalte_playwright()</code></li>
+<li>zugeordnete Module und Studiengänge über
+  <code>scrape_module_studiengaenge_playwright()</code></li>
+<li>Metadaten wie Titel, Nummer und Scraping-Datum</li>
 </ul>
 <h2 id="wann-nutze-ich-welche-funktion">Wann nutze ich welche Funktion?</h2>
 <ul>
-<li>Nutze <code>scrape_all_sem()</code>, wenn du einen vollständigen End-to-End-Lauf willst.</li>
-<li>Nutze <code>fetch_base_data()</code>, wenn du nur die Übersichtstabelle brauchst.</li>
-<li>Nutze <code>scrape_data_playwright()</code>, wenn du bereits eine Basistabelle hast und nur die Detaildaten nachziehen möchtest.</li>
-<li>Nutze <code>scrape_termine()</code>, <code>scrape_inhalte_playwright()</code> und <code>scrape_module_studiengaenge_playwright()</code>, wenn du gezielt bestimmte Bereiche einer Detailseite testen oder extrahieren willst.</li>
+<li>Nutze <code>scrape_all_sem()</code>, wenn du einen möglichst vollständigen,
+  wiederholbaren End-to-End-Lauf möchtest.</li>
+<li>Nutze <code>fetch_base_data()</code>, wenn du nur die Kursübersicht eines Semesters
+  brauchst.</li>
+<li>Nutze <code>scrape_data_playwright()</code>, wenn du bereits eine Basistabelle hast und
+  nur die Detailinformationen ergänzen willst.</li>
+<li>Nutze <code>scrape_termine()</code>, <code>scrape_inhalte_playwright()</code> und
+  <code>scrape_module_studiengaenge_playwright()</code>, wenn du einzelne Bereiche einer
+  Detailseite gezielt testen oder separat weiterverwenden möchtest.</li>
 </ul>
 <h2 id="wichtige-technische-eigenschaften">Wichtige technische Eigenschaften</h2>
 <ul>
-<li>Das HIS-Scraping nutzt aktiv einen Browser und ist daher empfindlicher gegenüber Layout-Änderungen der Zielseite.</li>
-<li><code>scrape_data_playwright()</code> enthält Resume-Logik und speichert Zwischenstände.</li>
-<li>Für lange Läufe gibt es automatische Browser-Neustarts, um Abstürze und Speicherprobleme abzufangen.</li>
+<li>Das HIS-Scraping arbeitet aktiv mit einem Browser und reagiert daher stärker
+  auf Änderungen in Oberfläche und Interaktionslogik.</li>
+<li><code>scrape_data_playwright()</code> enthält Resume-Logik, damit unterbrochene Läufe
+  fortgesetzt werden können.</li>
+<li>Für lange Läufe gibt es automatische Browser-Neustarts, um Stabilitäts- und
+  Speicherprobleme besser abzufangen.</li>
 </ul>
 <h2 id="praktische-empfehlung">Praktische Empfehlung</h2>
 <p>Für produktive Läufe ist meist diese Reihenfolge am sinnvollsten:</p>
 <ol>
 <li><code>fetch_base_data()</code></li>
-<li>Kontrolle der exportierten Basisdatei</li>
-<li><code>scrape_data_playwright()</code></li>
-<li>Optional: kompletter Wrapper <code>scrape_all_sem()</code> für wiederholbare Semesterläufe</li>
+<li>die erzeugte Basisdatei kurz prüfen</li>
+<li><code>scrape_data_playwright()</code> für die Detaildaten ausführen</li>
+<li>optional <code>scrape_all_sem()</code> verwenden, wenn der gesamte Ablauf in einem
+   Wrapper laufen soll</li>
 </ol></div>
             </div>
         </div>

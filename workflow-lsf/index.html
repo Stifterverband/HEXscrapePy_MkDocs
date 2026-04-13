@@ -112,7 +112,7 @@
             
             <li class="nav-item" data-bs-level="1"><a href="#lsf-workflow" class="nav-link">LSF-Workflow</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#zielbild" class="nav-link">Zielbild</a>
+            <li class="nav-item" data-bs-level="2"><a href="#grundidee" class="nav-link">Grundidee</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -120,7 +120,7 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#zwei-strategien-fur-basisdaten" class="nav-link">Zwei Strategien für Basisdaten</a>
+            <li class="nav-item" data-bs-level="2"><a href="#zwei-wege-zu-den-basisdaten" class="nav-link">Zwei Wege zu den Basisdaten</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -145,70 +145,93 @@
 
 <h1 id="lsf-workflow">LSF-Workflow</h1>
 <p>Diese Seite beschreibt den typischen Ablauf für LSF-Systeme.</p>
-<h2 id="zielbild">Zielbild</h2>
+<h2 id="grundidee">Grundidee</h2>
 <p>Das LSF-Scraping ist in zwei klar getrennte Phasen aufgeteilt:</p>
 <ol>
-<li>Basisdaten pro Semester erheben</li>
-<li>Detailseiten der einzelnen Veranstaltungen abrufen und parsen</li>
+<li>Zuerst wird pro Semester eine Veranstaltungsliste erzeugt.</li>
+<li>Danach werden die Detailseiten der einzelnen Veranstaltungen geladen und
+   geparst.</li>
 </ol>
+<p>Das macht den Workflow gut nachvollziehbar: erst sammeln, was es gibt, dann
+jede gefundene Veranstaltung im Detail auswerten.</p>
 <h2 id="wichtigste-einstiegsfunktionen">Wichtigste Einstiegsfunktionen</h2>
 <ul>
-<li><code>scrape_base_data_lsf()</code>: erhebt die Veranstaltungsliste eines oder mehrerer Semester</li>
-<li><code>scrape_lsf_veranstaltungen()</code>: lädt und parst die Detailseiten</li>
-<li><code>scrape_lsf_all_semesters()</code>: führt den kompletten Workflow pro Semester aus</li>
+<li><code>scrape_base_data_lsf()</code>: erstellt die Veranstaltungsliste eines oder
+  mehrerer Semester</li>
+<li><code>scrape_lsf_veranstaltungen()</code>: lädt die Detailseiten zu vorhandenen
+  Veranstaltungs-URLs und ergänzt die inhaltlichen Felder</li>
+<li><code>scrape_lsf_all_semesters()</code>: kombiniert beide Schritte zu einem kompletten
+  Semesterlauf</li>
 </ul>
-<h2 id="zwei-strategien-fur-basisdaten">Zwei Strategien für Basisdaten</h2>
+<h2 id="zwei-wege-zu-den-basisdaten">Zwei Wege zu den Basisdaten</h2>
 <p><code>scrape_base_data_lsf()</code> unterstützt zwei Modi:</p>
 <ul>
-<li><code>method="path"</code>: rekursive Navigation durch die Baumstruktur</li>
-<li><code>method="search"</code>: Erhebung über die Suchmaske mit Pagination</li>
+<li><code>method="path"</code>: rekursive Navigation durch die Baumstruktur des
+  Vorlesungsverzeichnisses</li>
+<li><code>method="search"</code>: Erhebung über die Suchmaske mit automatischer Pagination</li>
 </ul>
-<p>Der Unterschied ist wichtig:</p>
+<p>Der Unterschied ist praktisch wichtig:</p>
 <ul>
-<li><code>path</code> ist stärker an der Struktur des Vorlesungsverzeichnisses orientiert und kann fachliche Pfade mitschreiben.</li>
-<li><code>search</code> ist oft direkter, liefert aber nicht dieselben Strukturinformationen.</li>
+<li><code>path</code> folgt der fachlichen Struktur des Verzeichnisses und kann den
+  Navigationspfad einer Veranstaltung mitschreiben</li>
+<li><code>search</code> ist oft direkter, liefert aber nicht dieselben Strukturinformationen</li>
 </ul>
 <h2 id="ablauf-im-detail">Ablauf im Detail</h2>
 <h3 id="1-semester-auswahlen">1. Semester auswählen</h3>
-<p><code>select_semester()</code> navigiert innerhalb des LSF zum gewünschten Semester und öffnet das Vorlesungsverzeichnis.</p>
-<h3 id="2-basisdaten-aufbauen">2. Basisdaten aufbauen</h3>
-<p>Je nach Modus wird intern verwendet:</p>
+<p><code>select_semester()</code> navigiert innerhalb des LSF zum gewünschten Semester und
+öffnet das Vorlesungsverzeichnis.</p>
+<h3 id="2-basisdaten-einsammeln">2. Basisdaten einsammeln</h3>
+<p>Je nach Modus verwendet <code>scrape_base_data_lsf()</code> intern:</p>
 <ul>
 <li><code>_scrape_via_path()</code></li>
 <li><code>_scrape_via_search()</code></li>
 </ul>
-<p>Beide nutzen wiederum gemeinsame Helfer, damit Tabellen einheitlich gelesen werden:</p>
+<p>Beide Wege greifen auf gemeinsame Hilfsfunktionen zurück, damit erkannte
+Veranstaltungstabellen einheitlich verarbeitet werden:</p>
 <ul>
 <li><code>_find_event_tables()</code></li>
 <li><code>_parse_event_table()</code></li>
 <li><code>normalize_url()</code></li>
 </ul>
 <h3 id="3-detailseiten-laden">3. Detailseiten laden</h3>
-<p><code>scrape_lsf_veranstaltungen()</code> ruft jede Veranstaltungsseite einzeln ab. Dafür wird im Normalfall zunächst <code>fetch_lsf_course_html()</code> verwendet.</p>
-<p>Wenn eine LSF-Instanz Inhalte erst nach dem Aufklappen von Bereichen sichtbar macht, kann intern auf <code>fetch_lsf_course_html_expanded()</code> gewechselt werden.</p>
-<h3 id="4-inhalte-aus-detailseiten-extrahieren">4. Inhalte aus Detailseiten extrahieren</h3>
-<p>Für einzelne Inhaltsblöcke gibt es dedizierte Parser, zum Beispiel:</p>
+<p><code>scrape_lsf_veranstaltungen()</code> ruft jede Veranstaltungsseite einzeln ab. Im
+Normalfall passiert das zunächst über <code>fetch_lsf_course_html()</code>.</p>
+<p>Wenn eine LSF-Instanz Inhalte erst nach dem Aufklappen von Bereichen sichtbar
+macht, wird intern bei Bedarf auf <code>fetch_lsf_course_html_expanded()</code>
+umgeschaltet.</p>
+<h3 id="4-inhalte-aus-detailseiten-parsen">4. Inhalte aus Detailseiten parsen</h3>
+<p>Für die einzelnen Inhaltsblöcke gibt es getrennte Parser. Dazu gehören zum
+Beispiel:</p>
 <ul>
 <li><code>extract_veranstaltungstitel_lsf()</code></li>
 <li><code>extract_grunddaten_lsf()</code></li>
 <li><code>extract_termine_lsf()</code></li>
 <li><code>extract_dozenten_lsf()</code></li>
+<li><code>extract_zugeordnete_personen_lsf()</code></li>
 <li><code>extract_studiengaenge_lsf()</code></li>
 <li><code>extract_module_lsf()</code></li>
+<li><code>extract_einrichtung_lsf()</code></li>
 <li><code>extract_weitere_angaben_lsf()</code></li>
 </ul>
 <h2 id="wann-nutze-ich-welche-funktion">Wann nutze ich welche Funktion?</h2>
 <ul>
-<li>Nutze <code>scrape_lsf_all_semesters()</code>, wenn du den vollständigen Semester-Workflow brauchst.</li>
-<li>Nutze <code>scrape_base_data_lsf()</code>, wenn du nur die Veranstaltungsliste oder die Basis-CSV erzeugen willst.</li>
-<li>Nutze <code>scrape_lsf_veranstaltungen()</code>, wenn du schon eine Tabelle mit <code>URL_Event</code> hast und nur Detaildaten ergänzen möchtest.</li>
-<li>Nutze die <code>extract_*</code>-Funktionen, wenn du HTML-Strukturen einzeln testen oder Parser weiterentwickeln willst.</li>
+<li>Nutze <code>scrape_lsf_all_semesters()</code>, wenn du den vollständigen Workflow pro
+  Semester in einem Schritt ausführen willst.</li>
+<li>Nutze <code>scrape_base_data_lsf()</code>, wenn du nur die Veranstaltungsliste oder die
+  Basis-CSV erzeugen möchtest.</li>
+<li>Nutze <code>scrape_lsf_veranstaltungen()</code>, wenn du bereits eine Tabelle mit
+  <code>URL_Event</code> hast und nur die Detaildaten ergänzen willst.</li>
+<li>Nutze die <code>extract_*</code>-Funktionen, wenn du HTML-Strukturen gezielt testen,
+  Parser weiterentwickeln oder nur einzelne Inhaltsbereiche auslesen möchtest.</li>
 </ul>
 <h2 id="wichtige-technische-eigenschaften">Wichtige technische Eigenschaften</h2>
 <ul>
-<li>LSF wird weitgehend über HTML-Parsing verarbeitet und ist daher gut für parserorientierte Tests geeignet.</li>
-<li>Die Detaildaten-Funktionen sind stark modular aufgebaut.</li>
-<li>Resume und Zwischenspeicherung sind im Detail-Scraping bereits berücksichtigt.</li>
+<li>LSF wird überwiegend über HTML-Parsing verarbeitet und eignet sich daher gut
+  für parserorientierte Tests.</li>
+<li>Die Detailparser sind bewusst modular gehalten, damit einzelne Bereiche
+  separat verbessert oder ausgetauscht werden können.</li>
+<li>Resume-Logik und Zwischenspeicherung sind im Detail-Scraping bereits
+  berücksichtigt.</li>
 </ul></div>
             </div>
         </div>

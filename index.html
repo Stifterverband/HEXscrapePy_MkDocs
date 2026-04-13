@@ -116,15 +116,15 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#kernbereiche-des-pakets" class="nav-link">Kernbereiche des Pakets</a>
+            <li class="nav-item" data-bs-level="2"><a href="#die-zwei-modulbereiche" class="nav-link">Die zwei Modulbereiche</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#empfohlene-reihenfolge" class="nav-link">Empfohlene Reihenfolge</a>
+            <li class="nav-item" data-bs-level="2"><a href="#empfohlener-einstieg" class="nav-link">Empfohlener Einstieg</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#direkt-zu-den-wichtigsten-api-seiten" class="nav-link">Direkt zu den wichtigsten API-Seiten</a>
+            <li class="nav-item" data-bs-level="2"><a href="#direkt-zu-den-wichtigsten-referenzseiten" class="nav-link">Direkt zu den wichtigsten Referenzseiten</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -136,28 +136,43 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="hexscrapepy">HEXscrapePy</h1>
-<p><code>HEXscrapePy</code> ist ein Python-Paket zum automatisierten Scraping von Lehrveranstaltungsdaten aus HISinOne- und LSF-Systemen.</p>
-<p>Die Dokumentation ist so aufgebaut, dass du sowohl schnell loslegen als auch die einzelnen Funktionen transparent nachvollziehen kannst.</p>
+<p><code>HEXscrapePy</code> ist ein Python-Paket zum Auslesen von Lehrveranstaltungsdaten aus
+HISinOne- und LSF-Systemen. Es hilft dabei, Vorlesungsverzeichnisse semesterweise
+einzusammeln, Detailseiten zu parsen und die Ergebnisse als DataFrames oder
+Dateien weiterzuverwenden.</p>
+<p>Die Dokumentation ist so aufgebaut, dass du auf zwei Wegen schnell ans Ziel
+kommst:</p>
+<ul>
+<li>Du kannst mit den High-Level-Workflows direkt einen kompletten Lauf starten.</li>
+<li>Du kannst einzelne Funktionen gezielt nachschlagen, wenn du nur Teilstücke
+  des Scraping-Prozesses nutzen oder weiterentwickeln willst.</li>
+</ul>
 <h2 id="was-du-hier-findest">Was du hier findest</h2>
 <ul>
-<li>einen kompakten Einstieg in das Paket</li>
-<li>beschriebene Workflows für HISinOne und LSF</li>
-<li>eine Funktionsreferenz mit Einordnung nach Aufgabe und Einsatzpunkt</li>
+<li>einen kompakten Einstieg in Zweck und Aufbau des Pakets</li>
+<li>getrennte Workflow-Seiten für HISinOne und LSF</li>
+<li>eine API-Referenz mit Einordnung der Funktionen nach Aufgabe und Einsatzzweck</li>
 </ul>
-<h2 id="kernbereiche-des-pakets">Kernbereiche des Pakets</h2>
+<h2 id="die-zwei-modulbereiche">Die zwei Modulbereiche</h2>
 <h3 id="hisinone-his">HISinOne / HIS</h3>
-<p>Der Modulbereich <code>hexscrapepy.scraper</code> deckt browserbasiertes Scraping mit Playwright ab. Er eignet sich besonders für Systeme, in denen Semester, Trefferlisten und Detailansichten aktiv über die Oberfläche bedient werden müssen.</p>
+<p><code>hexscrapepy.scraper</code> arbeitet browserbasiert mit Playwright. Dieser Teil ist
+für Systeme gedacht, in denen Suchmasken, Tabs und Detailseiten aktiv im
+Browser bedient werden müssen.</p>
 <h3 id="lsf">LSF</h3>
-<p>Der Modulbereich <code>hexscrapepy.lsf_scraper</code> deckt LSF-Systeme ab. Hier werden Basisdaten und Detailseiten stärker parserorientiert verarbeitet, teilweise ergänzt durch Playwright-Fallbacks.</p>
-<h2 id="empfohlene-reihenfolge">Empfohlene Reihenfolge</h2>
+<p><code>hexscrapepy.lsf_scraper</code> verarbeitet LSF-Systeme. Hier besteht der Workflow aus
+Browser-Navigation für die Basisdaten und HTML-Parsing für die einzelnen
+Detailseiten.</p>
+<h2 id="empfohlener-einstieg">Empfohlener Einstieg</h2>
 <ol>
-<li>Lies den <a href="getting-started/">Schnellstart</a>.</li>
-<li>Nimm danach den passenden Workflow:</li>
+<li>Lies den <a href="getting-started/">Schnellstart</a>, um die Grundidee der API zu
+   verstehen.</li>
+<li>Wähle danach den passenden Workflow:</li>
 <li><a href="workflow-his/">HISinOne</a></li>
 <li><a href="workflow-lsf/">LSF</a></li>
-<li>Nutze anschließend die API-Seiten, um konkrete Funktionen nachzuschlagen.</li>
+<li>Nutze anschließend die API-Seiten, um einzelne Funktionen gezielt
+   nachzuschlagen.</li>
 </ol>
-<h2 id="direkt-zu-den-wichtigsten-api-seiten">Direkt zu den wichtigsten API-Seiten</h2>
+<h2 id="direkt-zu-den-wichtigsten-referenzseiten">Direkt zu den wichtigsten Referenzseiten</h2>
 <ul>
 <li><a href="api/">API-Überblick</a></li>
 <li><a href="api-his/">HISinOne-Funktionen</a></li>
@@ -244,5 +259,5 @@
 
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2026-04-13 08:11:46.799855+00:00
+Build Date UTC : 2026-04-13 09:03:32.423106+00:00
 -->
