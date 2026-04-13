@@ -113,11 +113,11 @@
             
             <li class="nav-item" data-bs-level="1"><a href="#hisinone-funktionen" class="nav-link">HISinOne-Funktionen</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#rollen-der-funktionen" class="nav-link">Rollen der Funktionen</a>
+            <li class="nav-item" data-bs-level="2"><a href="#typischer-ablauf" class="nav-link">Typischer Ablauf</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#typischer-ablauf" class="nav-link">Typischer Ablauf</a>
+            <li class="nav-item" data-bs-level="2"><a href="#rollen-der-funktionen" class="nav-link">Rollen der Funktionen</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -140,6 +140,38 @@
 <p>Diese Seite beschreibt die Funktionen aus <code>hexscrapepy.his_scraper</code>. Der Fokus
 liegt auf browsergesteuertem Scraping in HISinOne: erst Basisdaten laden, dann
 pro Veranstaltung die Detailseite öffnen und weiter auslesen.</p>
+<h2 id="typischer-ablauf">Typischer Ablauf</h2>
+<p>Wenn du nicht mit Einzelfunktionen arbeiten willst, ist der typische Ablauf
+sehr einfach:</p>
+<ol>
+<li>Mit <code>his_scrape_all_semesters()</code> einen kompletten Lauf starten.</li>
+<li>Intern lädt das Paket zuerst die Basisdaten mit <code>his_fetch_base_data()</code>.</li>
+<li>Danach öffnet es die Suchmaske und ruft die einezlene Kurse mit <code>his_scrape_detail_data_playwright()</code> auf.</li>
+<li>Die kleineren <code>his_scrape_*</code>-Funktionen lesen daraus Termine, Inhalte, Module und Studiengänge aus.</li>
+</ol>
+<p>Für einen schnellen Gesamtlauf reicht oft schon so etwas:</p>
+<pre><code class="language-py">semesters = [
+    &quot;Wintersemester 2025&quot;,
+    &quot;Sommersemester 2025&quot;,
+]
+
+results = his_scrape_all_semesters(
+    url=&quot;https://campus.uni-freiburg.de/qisserver/pages/startFlow.xhtml?_flowId=searchCourseNonStaff-flow&amp;_flowExecutionKey=e1s1&quot;,
+    semesters=semesters,
+    output_dir=&quot;data/uni_freiburg&quot;,
+    headless=False,
+    title_col=&quot;semesterunabhangiger_titel&quot;,
+    number_col=&quot;nummer&quot;,
+)
+</code></pre>
+<p>Wenn du nur einen Teil des Workflows brauchst:</p>
+<ul>
+<li><code>his_fetch_base_data()</code> ist für die Kursübersicht zuständig</li>
+<li><code>his_scrape_detail_data_playwright()</code> ergänzt zu vorhandenen Basisdaten die
+  Detailinformationen</li>
+<li><code>his_scrape_*</code> ist die Gruppe der kleineren Extraktionsfunktionen für
+  einzelne Bereiche der Detailseite</li>
+</ul>
 <h2 id="rollen-der-funktionen">Rollen der Funktionen</h2>
 <h3 id="offentlich-empfohlen">Öffentlich empfohlen</h3>
 <table>
@@ -154,7 +186,7 @@ pro Veranstaltung die Detailseite öffnen und weiter auslesen.</p>
 <tr>
 <td><code>his_scrape_all_semesters</code></td>
 <td>Wrapper</td>
-<td>führt den kompletten HISinOne-Workflow aus, also Basisdaten und Detaildaten für ein oder mehrere Semester</td>
+<td>nimmt dir den kompletten HISinOne-Ablauf ab und verarbeitet Basisdaten und Detaildaten für ein oder mehrere Semester</td>
 </tr>
 <tr>
 <td><code>his_fetch_base_data</code></td>
@@ -169,7 +201,7 @@ pro Veranstaltung die Detailseite öffnen und weiter auslesen.</p>
 <tr>
 <td><code>his_start_session</code></td>
 <td>Session</td>
-<td>startet Playwright, öffnet Chromium und lädt die HISinOne-Startseite</td>
+<td>startet Playwright und öffnet die HISinOne-Startseite im Browser</td>
 </tr>
 </tbody>
 </table>
@@ -186,32 +218,32 @@ pro Veranstaltung die Detailseite öffnen und weiter auslesen.</p>
 <tr>
 <td><code>his_select_semester_base_data</code></td>
 <td>Navigation</td>
-<td>wählt ein Semester aus und startet direkt die Suche für die Kursübersicht</td>
+<td>stellt das gewünschte Semester ein und startet direkt die Suche nach der Kursübersicht</td>
 </tr>
 <tr>
 <td><code>his_select_semester</code></td>
 <td>Navigation</td>
-<td>setzt das Semester in der Suchmaske, ohne sofort eine Suche auszulösen</td>
+<td>stellt das Semester in der Suchmaske ein, ohne sofort zu suchen</td>
 </tr>
 <tr>
 <td><code>his_search_and_get_data</code></td>
 <td>Extraktion</td>
-<td>liest die sichtbare Ergebnistabelle über alle Trefferseiten hinweg in ein gemeinsames DataFrame ein</td>
+<td>liest die Ergebnisliste über alle Trefferseiten hinweg aus</td>
 </tr>
 <tr>
 <td><code>his_scrape_termine</code></td>
 <td>Extraktion</td>
-<td>liest den Terminblock einer HIS-Detailseite als Label-Wert-Paare aus</td>
+<td>liest nur den Terminblock einer Detailseite</td>
 </tr>
 <tr>
 <td><code>his_scrape_inhalte_playwright</code></td>
 <td>Extraktion</td>
-<td>liest die Textblöcke aus dem Tab <code>Inhalte</code> und macht daraus Spalten einer Ergebniszeile</td>
+<td>liest die Inhalte aus dem Tab <code>Inhalte</code></td>
 </tr>
 <tr>
 <td><code>his_scrape_module_studiengaenge_playwright</code></td>
 <td>Extraktion</td>
-<td>liest die Tabellen zu Modulen und Studiengängen aus der Detailseite aus</td>
+<td>liest die Tabellen zu Modulen und Studiengängen einer Detailseite</td>
 </tr>
 </tbody>
 </table>
@@ -228,42 +260,30 @@ pro Veranstaltung die Detailseite öffnen und weiter auslesen.</p>
 <tr>
 <td><code>his_sanitize_semester_name</code></td>
 <td>Helper</td>
-<td>wandelt Semesternamen in kurze, dateitaugliche Kennungen wie <code>wise2024</code> um</td>
+<td>macht aus einem Semesternamen eine kurze Kennung für Dateinamen und Ordner</td>
 </tr>
 <tr>
 <td><code>his_check_dependencies</code></td>
 <td>Helper</td>
-<td>prüft, ob die wichtigsten Python-Abhängigkeiten für den HIS-Lauf importierbar sind</td>
+<td>prüft, ob die nötigen Python-Pakete für den HIS-Lauf vorhanden sind</td>
 </tr>
 <tr>
 <td><code>his_clean_table_prefixes</code></td>
 <td>Helper</td>
-<td>entfernt wiederholte Spaltenüberschriften aus Tabellenzellen</td>
+<td>entfernt störende Wiederholungen von Spaltennamen in Tabellenzellen</td>
 </tr>
 <tr>
 <td><code>his_normalize_titles</code></td>
 <td>Helper</td>
-<td>vereinheitlicht Veranstaltungstitel für Suche und Resume-Abgleich</td>
+<td>vereinheitlicht Titel für Suche und Resume-Abgleich</td>
 </tr>
 <tr>
 <td><code>normalize_his_text</code></td>
 <td>Helper</td>
-<td>normalisiert Texte aus dem HIS für robuste Stringvergleiche</td>
+<td>macht HIS-Texte für Vergleiche robuster und besser vergleichbar</td>
 </tr>
 </tbody>
 </table>
-<h2 id="typischer-ablauf">Typischer Ablauf</h2>
-<p>Ein vollständiger HISinOne-Lauf sieht meist so aus:</p>
-<ol>
-<li>Mit <code>his_fetch_base_data()</code> oder direkt mit <code>his_scrape_all_semesters()</code> die
-   Veranstaltungsliste eines Semesters erzeugen.</li>
-<li>Die Basisdatei kurz prüfen, zum Beispiel auf Spaltennamen und sichtbare
-   Trefferqualität.</li>
-<li>Mit <code>his_scrape_detail_data_playwright()</code> die Detailseiten der gefundenen
-   Veranstaltungen nachziehen.</li>
-<li>Innerhalb dieses Detail-Scrapings verarbeiten die kleineren
-   Extraktionsfunktionen die einzelnen Bereiche der Kursseite.</li>
-</ol>
 <h2 id="referenz">Referenz</h2>
 <h3 id="komplettes-modul">Komplettes Modul</h3>
 

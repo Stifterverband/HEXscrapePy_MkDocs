@@ -113,11 +113,11 @@
             
             <li class="nav-item" data-bs-level="1"><a href="#lsf-funktionen" class="nav-link">LSF-Funktionen</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#rollen-der-funktionen" class="nav-link">Rollen der Funktionen</a>
+            <li class="nav-item" data-bs-level="2"><a href="#typischer-ablauf" class="nav-link">Typischer Ablauf</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#typischer-ablauf" class="nav-link">Typischer Ablauf</a>
+            <li class="nav-item" data-bs-level="2"><a href="#rollen-der-funktionen" class="nav-link">Rollen der Funktionen</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -140,6 +140,30 @@
 <p>Diese Seite beschreibt die Funktionen aus <code>hexscrapepy.lsf_scraper</code>. Der
 Schwerpunkt liegt auf LSF-Systemen: zuerst eine Veranstaltungsliste aufbauen,
 dann die Detailseiten laden und in einzelne Inhaltsblöcke zerlegen.</p>
+<h2 id="typischer-ablauf">Typischer Ablauf</h2>
+<p>Wenn du nicht mit Einzelparsern arbeiten willst, ist der typische Ablauf sehr
+einfach:</p>
+<p>Mit <code>lsf_scrape_all_semesters()</code> einen kompletten Lauf starten.</p>
+<p>Intern erzeugt das Paket zuerst die Basisdaten mit <code>lsf_scrape_base_data()</code>. Danach lädt es die Detailseiten mit <code>lsf_scrape_veranstaltungsdetails()</code>. Die kleineren <code>lsf_extract_*</code>-Funktionen lesen daraus die einzelnen Inhalte.</p>
+<pre><code class="language-py">semester_liste = [
+    &quot;Wintersemester 2005/2006&quot;,
+]
+
+lsf_scraper.scrape_lsf_all_semesters(
+    start_url=&quot;https://studiport.uni-flensburg.de/qisserver/rds?state=user&amp;type=8&amp;topitem=departments&amp;breadCrumbSource==portal&quot;,
+    semester_liste=semester_liste,
+    output_dir=&quot;data/uni_flensburg&quot;,
+    method=&quot;path&quot;,
+)
+</code></pre>
+<p>Wenn du nur einen Teil des Workflows brauchst:</p>
+<ul>
+<li><code>lsf_scrape_base_data()</code> ist für die Veranstaltungsliste zuständig</li>
+<li><code>lsf_scrape_veranstaltungsdetails()</code> ergänzt zu vorhandenen <code>URL_Event</code>-Links
+  die Detaildaten</li>
+<li><code>lsf_extract_*</code> ist die Gruppe der kleineren Parser für einzelne Bereiche der
+  Detailseite</li>
+</ul>
 <h2 id="rollen-der-funktionen">Rollen der Funktionen</h2>
 <h3 id="offentlich-empfohlen">Öffentlich empfohlen</h3>
 <table>
@@ -154,17 +178,17 @@ dann die Detailseiten laden und in einzelne Inhaltsblöcke zerlegen.</p>
 <tr>
 <td><code>lsf_scrape_base_data</code></td>
 <td>Basisdaten</td>
-<td>erstellt eine Veranstaltungsliste für ein oder mehrere Semester und schreibt sie als Basisdatei</td>
+<td>sammelt alle Veranstaltungen eines oder mehrerer Semester und speichert die Ergebnisliste</td>
 </tr>
 <tr>
 <td><code>lsf_scrape_veranstaltungsdetails</code></td>
 <td>Detaildaten</td>
-<td>lädt für vorhandene <code>URL_Event</code>-Links die Detailseiten und ergänzt die inhaltlichen Zusatzfelder</td>
+<td>öffnet vorhandene Veranstaltungs-Links und ergänzt Titel, Termine, Personen, Module und weitere Details</td>
 </tr>
 <tr>
 <td><code>lsf_scrape_all_semesters</code></td>
 <td>Wrapper</td>
-<td>kombiniert Basislauf und Detail-Scraping zu einem kompletten LSF-Workflow pro Semester</td>
+<td>nimmt dir den kompletten Ablauf ab und führt Basislauf und Detail-Scraping nacheinander aus</td>
 </tr>
 </tbody>
 </table>
@@ -181,76 +205,76 @@ dann die Detailseiten laden und in einzelne Inhaltsblöcke zerlegen.</p>
 <tr>
 <td><code>lsf_select_semester</code></td>
 <td>Navigation</td>
-<td>wechselt im LSF zum gewünschten Semester und öffnet das Vorlesungsverzeichnis</td>
+<td>stellt im LSF das gewünschte Semester ein und öffnet das Vorlesungsverzeichnis</td>
 </tr>
 <tr>
 <td><code>lsf_extract_veranstaltungstitel</code></td>
 <td>Extraktion</td>
-<td>liest den sichtbaren Veranstaltungstitel aus der Detailseite</td>
+<td>liest nur den sichtbaren Titel einer Veranstaltung</td>
 </tr>
 <tr>
 <td><code>lsf_extract_grunddaten</code></td>
 <td>Extraktion</td>
-<td>liest den Block <code>Grunddaten zur Veranstaltung</code> als strukturierte Felder aus</td>
+<td>liest die normalen Stammdaten wie Art, Nummer oder Semester aus dem Grunddaten-Block</td>
 </tr>
 <tr>
 <td><code>lsf_extract_termine</code></td>
 <td>Extraktion</td>
-<td>liest alle Terminzeilen einer Veranstaltung in Tabellenform aus</td>
+<td>liest die Termin-Tabelle einer Veranstaltung</td>
 </tr>
 <tr>
 <td><code>lsf_extract_dozenten</code></td>
 <td>Extraktion</td>
-<td>extrahiert die Tabelle der durchführenden Dozentinnen und Dozenten</td>
+<td>liest die Tabelle der durchführenden Dozierenden</td>
 </tr>
 <tr>
 <td><code>lsf_extract_zugeordnete_personen</code></td>
 <td>Extraktion</td>
-<td>extrahiert weitere zugeordnete oder verantwortliche Personen als verschachtelte Tabelle</td>
+<td>liest weitere zugeordnete oder verantwortliche Personen</td>
 </tr>
 <tr>
 <td><code>lsf_extract_studiengaenge</code></td>
 <td>Extraktion</td>
-<td>liest den Studiengangsblock als verschachtelte Tabelle aus</td>
+<td>liest die zugeordneten Studiengänge</td>
 </tr>
 <tr>
 <td><code>lsf_extract_module</code></td>
 <td>Extraktion</td>
-<td>liest den Modulblock als verschachtelte Tabelle aus</td>
+<td>liest die zugeordneten Module</td>
 </tr>
 <tr>
 <td><code>lsf_extract_einrichtung</code></td>
 <td>Extraktion</td>
-<td>liest organisatorische Zuordnungen oder Einrichtungen aus</td>
+<td>liest organisatorische Einheiten oder Einrichtungen</td>
 </tr>
 <tr>
 <td><code>lsf_extract_weitere_angaben</code></td>
 <td>Extraktion</td>
-<td>liest den Block <code>Weitere Angaben zur Veranstaltung</code> generisch als Felder aus</td>
+<td>liest den Sammelblock <code>Weitere Angaben zur Veranstaltung</code> als einzelne Felder</td>
 </tr>
 <tr>
 <td><code>lsf_extract_lerninhalt</code></td>
 <td>Extraktion</td>
-<td>zieht das Feld <code>Lerninhalte</code> aus den weiteren Angaben heraus</td>
+<td>zieht aus den weiteren Angaben nur den Lerninhalt heraus</td>
 </tr>
 <tr>
 <td><code>lsf_extract_kommentar</code></td>
 <td>Extraktion</td>
-<td>zieht das Feld <code>Kommentar</code> aus den weiteren Angaben heraus</td>
+<td>zieht aus den weiteren Angaben nur den Kommentar heraus</td>
 </tr>
 <tr>
 <td><code>lsf_fetch_course_html</code></td>
 <td>Abruf</td>
-<td>lädt das rohe HTML einer LSF-Detailseite per HTTP</td>
+<td>lädt das rohe HTML einer Detailseite ohne Browser-Automation</td>
 </tr>
 <tr>
 <td><code>lsf_fetch_course_html_expanded</code></td>
 <td>Abruf</td>
-<td>lädt die Detailseite mit vorher aufgeklappten Toggle-Bereichen über Playwright</td>
+<td>lädt die Detailseite mit Playwright, wenn Inhalte erst nach Klicks sichtbar werden</td>
 </tr>
 </tbody>
 </table>
-<h3 id="intern-oder-technisch">Intern oder technisch</h3>
+<h3 id="intern">Intern</h3>
 <table>
 <thead>
 <tr>
@@ -263,72 +287,60 @@ dann die Detailseiten laden und in einzelne Inhaltsblöcke zerlegen.</p>
 <tr>
 <td><code>lsf_clean_text</code></td>
 <td>Helper</td>
-<td>bereinigt Freitext und ersetzt leere Werte durch einen einheitlichen Platzhalter</td>
+<td>räumt Text auf und ersetzt leere Werte durch einen einheitlichen Platzhalter</td>
 </tr>
 <tr>
 <td><code>lsf_normalize_url</code></td>
 <td>Helper</td>
-<td>reduziert LSF-Navigations-URLs auf stabile Vergleichswerte für Duplikaterkennung</td>
+<td>macht Navigations-URLs vergleichbar, damit Knoten nicht doppelt besucht werden</td>
 </tr>
 <tr>
 <td><code>_scrape_via_path</code></td>
 <td>Workflow</td>
-<td>interner Basislauf über die Baumstruktur des Vorlesungsverzeichnisses</td>
+<td>interner Weg durch die Baumstruktur des Vorlesungsverzeichnisses</td>
 </tr>
 <tr>
 <td><code>_scrape_via_search</code></td>
 <td>Workflow</td>
-<td>interner Basislauf über die Suchmaske mit Pagination</td>
+<td>interner Weg über die Suchmaske</td>
 </tr>
 <tr>
 <td><code>_find_event_tables</code></td>
 <td>Parser</td>
-<td>erkennt Tabellen, die tatsächlich Veranstaltungslisten enthalten</td>
+<td>erkennt Tabellen, in denen wirklich Veranstaltungen stehen</td>
 </tr>
 <tr>
 <td><code>_parse_event_table</code></td>
 <td>Parser</td>
-<td>liest einzelne Veranstaltungszeilen in Ergebnis-Dictionaries ein</td>
+<td>liest eine gefundene Veranstaltungstabelle zeilenweise aus</td>
 </tr>
 <tr>
 <td><code>_find_lsf_section_table</code></td>
 <td>Parser</td>
-<td>findet Bereichstabellen robust über <code>summary</code>-Texte oder Container-IDs</td>
+<td>findet robuste Zieltabellen für einzelne Bereiche einer Detailseite</td>
 </tr>
 <tr>
 <td><code>_needs_expanded_lsf_fetch</code></td>
 <td>Steuerung</td>
-<td>entscheidet, ob eine Detailseite noch einmal mit aufgeklappten Bereichen geladen werden sollte</td>
+<td>entscheidet, ob eine Detailseite noch einmal mit aufgeklappten Bereichen geladen werden muss</td>
 </tr>
 <tr>
 <td><code>_load_lsf_results_json</code></td>
 <td>Resume</td>
-<td>lädt vorhandene Detailergebnisse für Resume-Läufe</td>
+<td>lädt schon vorhandene Detaildaten für einen Resume-Lauf</td>
 </tr>
 <tr>
 <td><code>_write_lsf_results_json</code></td>
 <td>Resume</td>
-<td>schreibt Zwischenergebnisse als JSON-Datei zurück</td>
+<td>speichert Zwischenstände oder Endergebnisse als JSON</td>
 </tr>
 <tr>
 <td><code>_build_lsf_detail_frame</code></td>
 <td>Merge</td>
-<td>reduziert gescrapte Detaildaten auf die Spalten, die später sauber gemergt werden können</td>
+<td>bereitet Detaildaten so auf, dass sie sauber mit den Eingangsdaten zusammengeführt werden können</td>
 </tr>
 </tbody>
 </table>
-<h2 id="typischer-ablauf">Typischer Ablauf</h2>
-<p>Ein vollständiger LSF-Lauf sieht meist so aus:</p>
-<ol>
-<li>Mit <code>lsf_scrape_all_semesters()</code> oder manuell mit <code>lsf_scrape_base_data()</code>
-   zunächst die Veranstaltungsliste eines Semesters aufbauen.</li>
-<li>Auf Basis der erzeugten <code>URL_Event</code>-Spalte die Detailseiten mit
-   <code>lsf_scrape_veranstaltungsdetails()</code> abrufen.</li>
-<li>Innerhalb des Detail-Scrapings lesen die einzelnen <code>extract_*</code>-Funktionen
-   die jeweiligen Inhaltsblöcke aus dem HTML.</li>
-<li>Die Ergebnisse werden anschließend zu einem gemeinsamen DataFrame pro
-   Semester zusammengeführt.</li>
-</ol>
 <h2 id="referenz">Referenz</h2>
 <h3 id="komplettes-modul">Komplettes Modul</h3>
 
